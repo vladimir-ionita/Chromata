@@ -6,14 +6,13 @@
   "authorEmail" : "ionita.vladimir@gmail.com",
   "author" : "Vladimir Ionita",
   "icon": "icon.png",
-
   "commands" : [
     {
-      "script" : "app.js",
-      "handler" : "onRun",
-      "shortcut" : "command shift h",
-      "name" : "Hello World!",
-      "identifier" : "hello-world"
-    }
+      "script" : "getPalette.js",
+      "handler": "onRun",
+      "shortcut": "command shift p",
+      "name": "Get Palette",
+      "identifier": "get-palette"
+    },
   ],
 }

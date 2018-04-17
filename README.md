@@ -8,3 +8,7 @@ P.S. This repository should be moved to Github.
 
 Dunya: So how do I install it?
 Vladimir: Just double click on it
+
+## Usage
+
+To get the palette, select the layers you want to get the palette from and press `⌘ + ⇧ + P`.
