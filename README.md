@@ -6,8 +6,9 @@ P.S. This repository should be moved to Github.
 
 ## Installation
 
-Dunya: So how do I install it?
-Vladimir: Just double click on it
+**Dunya:** So how do I install it?
+
+**Vladimir:** Just double click on the sketchplugin file ;)
 
 ## Usage
 
