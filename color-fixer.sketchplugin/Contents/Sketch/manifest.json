@@ -14,5 +14,12 @@
       "name": "Get Palette",
       "identifier": "get-palette"
     },
+    {
+      "script" : "fixColors.js",
+      "handler": "onRun",
+      "shortcut": "command shift f",
+      "name": "Fix Colors",
+      "identifier": "fix-colors"
+    }
   ],
 }
