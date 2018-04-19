@@ -12,4 +12,6 @@ P.S. This repository should be moved to Github.
 
 ## Usage
 
-To get the palette, select the layers you want to get the palette from and press `⌘ + ⇧ + P`.
+**Dunya:** I installed it. Now what?
+
+**Vladimir:** Select the layers you want to get the palette from and press `⌘ + ⇧ + P`. It's that simple ;)
