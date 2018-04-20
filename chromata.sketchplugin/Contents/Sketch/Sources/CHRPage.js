@@ -1,6 +1,6 @@
 @import 'Sources/CHRLayer.js'
 
-class CFXPage {
+class CHRPage {
   constructor(page) {
     this.page = page
   }
