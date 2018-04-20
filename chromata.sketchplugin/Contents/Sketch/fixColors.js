@@ -1,4 +1,4 @@
-@import 'Sources/Utilities/CFXUserDefaults.js'
+@import 'Sources/Utilities/CHRUserDefaults.js'
 @import 'Sources/Utilities/CFXArrayHelper.js'
 @import 'Sources/CHRDocument.js'
 
