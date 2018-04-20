@@ -1,5 +1,5 @@
 @import 'Sources/CHRStyle.js'
-@import 'Sources/Utilities/CFXColorsHelper.js'
+@import 'Sources/Utilities/CHRColorsHelper.js'
 @import 'Sources/Utilities/CHRArrayHelper.js'
 
 class CHRLayer {
