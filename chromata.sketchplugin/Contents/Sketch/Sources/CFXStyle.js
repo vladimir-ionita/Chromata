@@ -1,3 +1,5 @@
+/** Class representing a style. */
+
 class CFXStyle {
   constructor(style) {
     this.style = style
