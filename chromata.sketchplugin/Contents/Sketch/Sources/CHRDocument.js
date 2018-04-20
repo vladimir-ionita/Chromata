@@ -1,6 +1,6 @@
 @import 'Sources/CHRPage.js'
 
-class CFXDocument {
+class CHRDocument {
   constructor(document) {
     this.document = document
   }
