@@ -1,6 +1,6 @@
 @import 'Sources/CHRStyle.js'
 @import 'Sources/Utilities/CFXColorsHelper.js'
-@import 'Sources/Utilities/CFXArrayHelper.js'
+@import 'Sources/Utilities/CHRArrayHelper.js'
 
 class CHRLayer {
   constructor(layer) {

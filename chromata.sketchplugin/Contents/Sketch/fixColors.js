@@ -1,5 +1,5 @@
 @import 'Sources/Utilities/CHRUserDefaults.js'
-@import 'Sources/Utilities/CFXArrayHelper.js'
+@import 'Sources/Utilities/CHRArrayHelper.js'
 @import 'Sources/CHRDocument.js'
 
 var onRun = function(context) {
