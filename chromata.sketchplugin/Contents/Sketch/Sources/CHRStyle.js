@@ -1,6 +1,6 @@
 /** Class representing a style. */
 
-class CFXStyle {
+class CHRStyle {
   constructor(style) {
     this.style = style
   }

@@ -1,4 +1,4 @@
-@import 'Sources/CFXStyle.js'
+@import 'Sources/CHRStyle.js'
 @import 'Sources/Utilities/CFXColorsHelper.js'
 @import 'Sources/Utilities/CFXArrayHelper.js'
 
@@ -89,7 +89,7 @@ class CFXLayer {
     }
 
     getColorsFromBasicLayer(layer) {
-      var layerColors = new CFXStyle(layer.style()).getColors()
+      var layerColors = new CHRStyle(layer.style()).getColors()
 
       return len(layerColors) > 0 ? [{
         'layer': layer,
