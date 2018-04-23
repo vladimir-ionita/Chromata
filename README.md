@@ -19,3 +19,9 @@ P.S. This repository should be moved to Github.
 **Vladimir:**
 You have to select the layers that contain the colors you want to use for your palette and press `⌘ + ⇧ + P`.
 After, you can press `⌘ + ⇧ + F` and the plugin will select the next deviated layer.
+
+**Dunya:** How does the plugin know about my palette?
+
+**Vladimir:** When you press `⌘ + ⇧ + P`, you actually register a palette.
+This palette will be used when checking every layer's colors. If a layer doesn't correspond to the palette, it will be a 'deviated layer'.
+Every time you want to reset the palette, reselect the layers and use the same shortcut to register a new one.
