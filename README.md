@@ -1,6 +1,6 @@
 # Chromata
 
-[![Version](https://img.shields.io/badge/Version-0.2.1-green.svg)](https://shields.io/)
+[![Version](https://img.shields.io/badge/Version-0.2.2-green.svg)](https://shields.io/)
 
 The color finder plugin for sketch 49.3.
 

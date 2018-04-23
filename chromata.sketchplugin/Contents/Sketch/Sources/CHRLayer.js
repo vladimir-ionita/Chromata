@@ -1,8 +1,8 @@
-@import 'Sources/CFXStyle.js'
-@import 'Sources/Utilities/CFXColorsHelper.js'
-@import 'Sources/Utilities/CFXArrayHelper.js'
+@import 'Sources/CHRStyle.js'
+@import 'Sources/Utilities/CHRColorsHelper.js'
+@import 'Sources/Utilities/CHRArrayHelper.js'
 
-class CFXLayer {
+class CHRLayer {
   constructor(layer) {
     this.layer = layer
   }
@@ -52,7 +52,7 @@ class CFXLayer {
       var childrenLayers = nestedLayer.layers();
       for (var i = 0; i < childrenLayers.count(); i++) {
         var layer = childrenLayers[i]
-        colors = colors.concat(new CFXLayer(layer).getColorsForLayer())
+        colors = colors.concat(new CHRLayer(layer).getColorsForLayer())
       }
 
       return colors
@@ -89,7 +89,7 @@ class CFXLayer {
     }
 
     getColorsFromBasicLayer(layer) {
-      var layerColors = new CFXStyle(layer.style()).getColors()
+      var layerColors = new CHRStyle(layer.style()).getColors()
 
       return len(layerColors) > 0 ? [{
         'layer': layer,

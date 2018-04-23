@@ -1,6 +1,6 @@
-@import 'Sources/Utilities/CFXUserDefaults.js'
-@import 'Sources/Utilities/CFXArrayHelper.js'
-@import 'Sources/CFXDocument.js'
+@import 'Sources/Utilities/CHRUserDefaults.js'
+@import 'Sources/Utilities/CHRArrayHelper.js'
+@import 'Sources/CHRDocument.js'
 
 var onRun = function(context) {
   var palette = loadPalette()
@@ -10,7 +10,7 @@ var onRun = function(context) {
     return
   }
 
-  var layerColorsDictionaries = (new CFXDocument(context.document)).getColorsForDocument()
+  var layerColorsDictionaries = (new CHRDocument(context.document)).getColorsForDocument()
   var deviatedLayer = getNextDeviatedLayer(layerColorsDictionaries, palette)
   if (typeof deviatedLayer != 'undefined') {
     context.document.setCurrentPage(deviatedLayer.parentPage())

@@ -1,6 +1,6 @@
-@import 'Sources/CFXLayer.js'
+@import 'Sources/CHRLayer.js'
 
-class CFXPage {
+class CHRPage {
   constructor(page) {
     this.page = page
   }
@@ -11,7 +11,7 @@ class CFXPage {
     var layers = this.page.layers()
     for (var i = 0; i < layers.count(); i++) {
       var layer = layers[i]
-      var colorsForLayer = new CFXLayer(layer).getColorsForLayer()
+      var colorsForLayer = new CHRLayer(layer).getColorsForLayer()
 
       colorsForAllLayers = colorsForAllLayers.concat(colorsForLayer)
     }

@@ -1,6 +1,6 @@
-@import 'Sources/CFXLayer.js'
-@import 'Sources/Utilities/CFXArrayHelper.js'
-@import 'Sources/Utilities/CFXUserDefaults.js'
+@import 'Sources/CHRLayer.js'
+@import 'Sources/Utilities/CHRArrayHelper.js'
+@import 'Sources/Utilities/CHRUserDefaults.js'
 
 var palette = []
 
@@ -18,7 +18,7 @@ var onRun = function(context) {
 
   for (var i = 0; i < selectedLayers.count(); i++) {
     var layer = selectedLayers[i]
-    var colorsForLayer = new CFXLayer(layer).getColorsForLayer()
+    var colorsForLayer = new CHRLayer(layer).getColorsForLayer()
 
     for (var j = 0; j < len(colorsForLayer); j++) {
       var dictionary = colorsForLayer[j]
