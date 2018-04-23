@@ -16,4 +16,6 @@ P.S. This repository should be moved to Github.
 
 **Dunya:** I installed it. Now what?
 
-**Vladimir:** Select the layers you want to get the palette from and press `⌘ + ⇧ + P`. It's that simple ;)
+**Vladimir:**
+You have to select the layers that contain the colors you want to use for your palette and press `⌘ + ⇧ + P`.
+After, you can press `⌘ + ⇧ + F` and the plugin will select the next deviated layer.
