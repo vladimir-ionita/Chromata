@@ -1,3 +1,10 @@
+/*
+  Chromata - Sketch plugin to find and fix layers that have colors
+  outside of your palette.
+  Copyright (C) 2018  Vladimir Ionita
+*/
+
+
 @import 'Sources/Utilities/CHRUserDefaults.js'
 @import 'Sources/Utilities/CHRArrayHelper.js'
 @import 'Sources/CHRDocument.js'
