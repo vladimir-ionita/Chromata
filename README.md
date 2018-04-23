@@ -21,3 +21,5 @@ You have to select the layers that contain the colors you want to use for your p
 After, you can press `⌘ + ⇧ + F` and the plugin will select the next deviated layer.
 
 **Dunya:** How does the plugin know about my palette?
+
+**Vladimir:** TODO
