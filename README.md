@@ -1,6 +1,6 @@
 # Chromata
 
-[![Version](https://img.shields.io/badge/Version-0.2.2-green.svg)](https://shields.io/)
+[![Version](https://img.shields.io/badge/Version-0.2.3-green.svg)](https://shields.io/)
 
 The color finder plugin for sketch 49.3.
 
@@ -25,3 +25,7 @@ After, you can press `⌘ + ⇧ + F` and the plugin will select the next deviate
 **Vladimir:** When you press `⌘ + ⇧ + P`, you actually register a palette.
 This palette will be used when checking every layer's colors. If a layer doesn't correspond to the palette, it will be a 'deviated layer'.
 Every time you want to reset the palette, reselect the layers and use the same shortcut to register a new one.
+
+## License
+
+GPLv3
