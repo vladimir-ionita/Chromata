@@ -20,8 +20,13 @@
 */
 
 
-function isColorHex(color) {
-  return color.indexOf('#') != -1
+/**
+ * Check if a string is a hex representation of a color
+ * @param {string} colorRepresentation
+ * @return {boolean}
+ */
+function isHexRepresentationOfAColor(colorRepresentation) {
+  return colorRepresentation.indexOf('#') >= 0
 }
 
 function isColorRGB(color) {

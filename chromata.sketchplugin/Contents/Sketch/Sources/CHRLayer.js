@@ -88,7 +88,7 @@ class CHRLayer {
         var attribute = stringAttributes[i]
         var colorString = attribute['MSAttributedStringColorAttribute']['value']
 
-        if (isColorHex(colorString)) {
+        if (isHexRepresentationOfAColor(colorString)) {
           colors.push(hexStringToColor(colorString))
         } else if (isColorRGB(colorString)) {
           colors.push(rgbaStringToColor(colorString))
