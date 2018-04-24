@@ -29,8 +29,13 @@ function isHexRepresentationOfAColor(colorRepresentation) {
   return colorRepresentation.indexOf('#') >= 0
 }
 
-function isColorRGB(color) {
-  return color.indexOf('rgba') != -1
+/**
+ * Check if a string is a rgba description of a color
+ * @param {string} colorDescription
+ * @return {boolean}
+ */
+function isRgbaDescriptionOfAColor(colorDescription) {
+  return colorDescription.indexOf('rgba') >= 0
 }
 
 

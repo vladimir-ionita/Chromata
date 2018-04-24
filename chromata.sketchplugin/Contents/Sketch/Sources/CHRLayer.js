@@ -90,7 +90,7 @@ class CHRLayer {
 
         if (isHexRepresentationOfAColor(colorString)) {
           colors.push(hexStringToColor(colorString))
-        } else if (isColorRGB(colorString)) {
+        } else if (isRgbaDescriptionOfAColor(colorString)) {
           colors.push(rgbaStringToColor(colorString))
         }
       }
