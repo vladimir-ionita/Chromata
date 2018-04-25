@@ -44,7 +44,7 @@ var onRun = function(context) {
 }
 
 function loadPalette() {
-  var rawPaletteRgb = getValueForKey('palette')
+  var rawPaletteRgb = CHRUserDefaults.fetchValueForKey('palette')
 
   var palette = []
   for (var i = 0; i < rawPaletteRgb.count(); i++) {

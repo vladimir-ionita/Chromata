@@ -21,8 +21,9 @@
 
 
 @import 'Sources/CHRStyle.js'
-@import 'Sources/Utilities/CHRColorsHelper.js'
 @import 'Sources/Utilities/CHRArrayHelper.js'
+@import 'Sources/Utilities/Colors/CHRColorsHelper.js'
+@import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
 
 class CHRLayer {
   constructor(layer) {
@@ -88,10 +89,10 @@ class CHRLayer {
         var attribute = stringAttributes[i]
         var colorString = attribute['MSAttributedStringColorAttribute']['value']
 
-        if (isColorHex(colorString)) {
-          colors.push(hexStringToColor(colorString))
-        } else if (isColorRGB(colorString)) {
-          colors.push(rgbaStringToColor(colorString))
+        if (isHexRepresentationOfAColor(colorString)) {
+          colors.push(CHRMSColorFactory.createFromHexRepresentation(colorString))
+        } else if (isRgbaDescriptionOfAColor(colorString)) {
+          colors.push(CHRMSColorFactory.createFromRgbaDescription(colorString))
         }
       }
 

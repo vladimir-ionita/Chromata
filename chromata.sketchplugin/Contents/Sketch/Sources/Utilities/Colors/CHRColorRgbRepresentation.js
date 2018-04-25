@@ -20,28 +20,30 @@
 */
 
 
-const pluginIdentifier = "com.vladimirionita.chromata"
-
-/** Class representing a wrapper around NSUserDefaults */
-function CHRUserDefaults() {}
-
-/**
- * Save value for key in NSUserDefaults
- * @param {T} value
- * @param {string} key
- */
-CHRUserDefaults.saveValueForKey = function(value, key) {
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
-  userDefaults.setObject_forKey(value, key)
-  userDefaults.synchronize()
+/** Class representing a rgb representation (a simple dictionary) */
+function CHRColorRgbRepresentation(r, g, b) {
+  this.r = r
+  this.g = g
+  this.b = b
 }
 
 /**
- * Fetch value for key from NSUserDefaults
- * @param {string} key
- * @return {T|null}
+ * Create rgb representation from hex representation
+ * @param {string} hexRepresentation
+ * @return {CHRColorRgbRepresentation|null}
  */
-CHRUserDefaults.fetchValueForKey = function(key) {
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
-  return userDefaults.valueForKey(key)
+CHRColorRgbRepresentation.createFromHexRepresentation = function(hexRepresentation) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexRepresentation)
+  if (result == null) {
+    return null
+  }
+
+  var r = parseInt(result[1], 16)
+  var g = parseInt(result[2], 16)
+  var b = parseInt(result[3], 16)
+  if (r == null || g == null || b == null) {
+    return null
+  }
+
+  return new CHRColorRgbRepresentation(r, g, b)
 }

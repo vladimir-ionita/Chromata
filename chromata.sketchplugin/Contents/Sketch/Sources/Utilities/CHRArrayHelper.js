@@ -20,6 +20,11 @@
 */
 
 
+/**
+ * Get array's length
+ * @param {Array} array
+ * @return {number}
+ */
 function len(array) {
   return array.reduce(c => c + 1, 0)
 }

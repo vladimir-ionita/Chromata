@@ -20,28 +20,20 @@
 */
 
 
-const pluginIdentifier = "com.vladimirionita.chromata"
-
-/** Class representing a wrapper around NSUserDefaults */
-function CHRUserDefaults() {}
-
 /**
- * Save value for key in NSUserDefaults
- * @param {T} value
- * @param {string} key
+ * Check if a string is a hex representation of a color
+ * @param {string} colorRepresentation
+ * @return {boolean}
  */
-CHRUserDefaults.saveValueForKey = function(value, key) {
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
-  userDefaults.setObject_forKey(value, key)
-  userDefaults.synchronize()
+function isHexRepresentationOfAColor(colorRepresentation) {
+  return colorRepresentation.indexOf('#') >= 0
 }
 
 /**
- * Fetch value for key from NSUserDefaults
- * @param {string} key
- * @return {T|null}
+ * Check if a string is a rgba description of a color
+ * @param {string} colorDescription
+ * @return {boolean}
  */
-CHRUserDefaults.fetchValueForKey = function(key) {
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
-  return userDefaults.valueForKey(key)
+function isRgbaDescriptionOfAColor(colorDescription) {
+  return colorDescription.indexOf('rgba') >= 0
 }
