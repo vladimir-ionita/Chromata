@@ -20,15 +20,28 @@
 */
 
 
-const pluginIdentifier = "com.vladimirionita.chromata";
+const pluginIdentifier = "com.vladimirionita.chromata"
 
-function setValueForKey(value, key) {
+/** Class representing a wrapper around NSUserDefaults */
+function CHRUserDefaults() {}
+
+/**
+ * Save value for key in NSUserDefaults
+ * @param {T} value
+ * @param {string} key
+ */
+CHRUserDefaults.saveValueForKey = function(value, key) {
   var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
   userDefaults.setObject_forKey(value, key)
   userDefaults.synchronize()
 }
 
-function getValueForKey(key) {
+/**
+ * Fetch value for key from NSUserDefaults
+ * @param {string} key
+ * @return {T|null}
+ */
+CHRUserDefaults.fetchValueForKey = function(key) {
   var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
   return userDefaults.valueForKey(key)
 }

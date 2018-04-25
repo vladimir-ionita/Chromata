@@ -65,5 +65,5 @@ function savePalette(palette) {
     return color.RGBADictionary()
   })
 
-  setValueForKey(paletteRgb, 'palette')
+  CHRUserDefaults.saveValueForKey(paletteRgb, 'palette')
 }
