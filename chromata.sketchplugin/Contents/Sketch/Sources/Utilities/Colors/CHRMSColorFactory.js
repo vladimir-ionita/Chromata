@@ -23,30 +23,23 @@
 @import 'Sources/Utilities/Colors/CHRColorRgbRepresentation.js'
 @import 'Sources/Utilities/Colors/CHRColorRgbaRepresentation.js'
 
-/**
- * Check if a string is a hex representation of a color
- * @param {string} colorRepresentation
- * @return {boolean}
- */
-function isHexRepresentationOfAColor(colorRepresentation) {
-  return colorRepresentation.indexOf('#') >= 0
-}
+/** Class representing a MSColor factory*/
+function CHRMSColorFactory() {}
 
 /**
- * Check if a string is a rgba description of a color
- * @param {string} colorDescription
- * @return {boolean}
+ * Create a color from hex representation
+ * @param {string} hexRepresentation
+ * @return {MSColor|null}
  */
-function isRgbaDescriptionOfAColor(colorDescription) {
-  return colorDescription.indexOf('rgba') >= 0
-}
+CHRMSColorFactory.createFromHexRepresentation = function(hexRepresentation) {
+  var rgbRepresentation = CHRColorRgbRepresentation.createFromHexRepresentation(hexRepresentation)
+  if (rgbRepresentation == null) {
+    return null
+  }
 
-
-function rgbaStringToColor(rgbaString) {
-  var rgbRepresentation = CHRColorRgbaRepresentation.createFromRgbaDescription(rgbaString)
-  return rgbToColor(rgbRepresentation)
-}
-
-function rgbToColor(rgb) {
-  return MSColor.rgbColorRed_green_blue(rgb.r, rgb.g, rgb.b).colorWithAlphaComponent(rgb.a)
+  return MSColor.rgbColorRed_green_blue(
+    rgbRepresentation.r,
+    rgbRepresentation.g,
+    rgbRepresentation.b
+  )
 }
