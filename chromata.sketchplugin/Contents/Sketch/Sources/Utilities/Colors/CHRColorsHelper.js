@@ -20,10 +20,6 @@
 */
 
 
-@import 'Sources/Utilities/Colors/CHRColorRgbRepresentation.js'
-@import 'Sources/Utilities/Colors/CHRColorRgbaRepresentation.js'
-@import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
-
 /**
  * Check if a string is a hex representation of a color
  * @param {string} colorRepresentation
