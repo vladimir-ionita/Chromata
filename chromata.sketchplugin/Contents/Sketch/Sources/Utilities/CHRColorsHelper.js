@@ -21,6 +21,7 @@
 
 
 @import 'Sources/Utilities/Colors/CHRColorRgbRepresentation.js'
+@import 'Sources/Utilities/Colors/CHRColorRgbaRepresentation.js'
 
 /**
  * Check if a string is a hex representation of a color
@@ -46,21 +47,9 @@ function hexStringToColor(hexString) {
   return MSColor.rgbColorRed_green_blue(rgbRepresentation.r, rgbRepresentation.g, rgbRepresentation.b)
 }
 
-function rgbaStringToRgb(rgbaString) {
-  var rgbaValuesString = rgbaString.substring(rgbaString.indexOf('(') + 1, rgbaString.indexOf(')'))
-  var rgbaValues = rgbaValuesString.split(',')
-
-  return {
-    r: rgbaValues[0],
-    g: rgbaValues[1],
-    b: rgbaValues[2],
-    a: rgbaValues[3]
-  }
-}
-
 function rgbaStringToColor(rgbaString) {
-  var rgb = rgbaStringToRgb(rgbaString)
-  return rgbToColor(rgb)
+  var rgbRepresentation = CHRColorRgbaRepresentation.createFromRgbaDescription(rgbaString)
+  return rgbToColor(rgbRepresentation)
 }
 
 function rgbToColor(rgb) {
