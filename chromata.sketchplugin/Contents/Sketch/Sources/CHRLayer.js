@@ -92,7 +92,7 @@ class CHRLayer {
         if (isHexRepresentationOfAColor(colorString)) {
           colors.push(CHRMSColorFactory.createFromHexRepresentation(colorString))
         } else if (isRgbaDescriptionOfAColor(colorString)) {
-          colors.push(rgbaStringToColor(colorString))
+          colors.push(CHRMSColorFactory.createFromRgbaDescription(colorString))
         }
       }
 

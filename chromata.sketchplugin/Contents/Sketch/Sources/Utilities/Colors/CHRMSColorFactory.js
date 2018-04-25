@@ -45,6 +45,20 @@ CHRMSColorFactory.createFromHexRepresentation = function(hexRepresentation) {
 }
 
 /**
+ * Create a color from rgba description
+ * @param {string} rgbaDescription
+ * @return {MSColor|null}
+ */
+CHRMSColorFactory.createFromRgbaDescription = function(rgbaDescription) {
+  var rgbaRepresentation = CHRColorRgbaRepresentation.createFromRgbaDescription(rgbaDescription)
+  if (rgbaRepresentation == null) {
+    return null
+  }
+
+  return CHRMSColorFactory.createFromRgbaRepresentation(rgbaRepresentation)
+}
+
+/**
  * Create color from rgba representation
  * @param {CHRColorRgbaRepresentation}
  * @return {MSColor|null}

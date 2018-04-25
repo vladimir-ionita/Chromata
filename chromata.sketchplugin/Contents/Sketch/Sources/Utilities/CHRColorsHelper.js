@@ -41,9 +41,3 @@ function isHexRepresentationOfAColor(colorRepresentation) {
 function isRgbaDescriptionOfAColor(colorDescription) {
   return colorDescription.indexOf('rgba') >= 0
 }
-
-
-function rgbaStringToColor(rgbaString) {
-  var rgbRepresentation = CHRColorRgbaRepresentation.createFromRgbaDescription(rgbaString)
-  return CHRMSColorFactory.createFromRgbaRepresentation(rgbRepresentation)
-}
