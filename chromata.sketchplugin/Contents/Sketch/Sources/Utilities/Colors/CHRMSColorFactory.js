@@ -43,3 +43,22 @@ CHRMSColorFactory.createFromHexRepresentation = function(hexRepresentation) {
     rgbRepresentation.b
   )
 }
+
+/**
+ * Create color from rgba representation
+ * @param {CHRColorRgbaRepresentation}
+ * @return {MSColor|null}
+ */
+CHRMSColorFactory.createFromRgbaRepresentation = function(rgbaRepresentation) {
+  if (rgbaRepresentation == null) {
+    return null
+  }
+
+  return MSColor.rgbColorRed_green_blue(
+    rgbaRepresentation.r,
+    rgbaRepresentation.g,
+    rgbaRepresentation.b
+  ).colorWithAlphaComponent(
+    rgbaRepresentation.a
+  )
+}
