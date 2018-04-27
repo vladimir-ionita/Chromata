@@ -20,11 +20,20 @@
 */
 
 
+/** Class representing a wrapper around MSStyle */
 class CHRStyle {
+  /**
+   * Create a CHRStyle from a MSStyle
+   * @param {MSStyle} style
+   */
   constructor(style) {
     this.style = style
   }
 
+  /**
+   * Get style's colors
+   * @return {Array.<MSColor>}
+   */
   getColors() {
     var colors = []
 
@@ -34,6 +43,10 @@ class CHRStyle {
     return colors
   }
 
+  /**
+   * Get style's border colors
+   * @return {Array.<MSColor>}
+   */
   getBorderColors() {
     var colors = []
 
@@ -47,6 +60,10 @@ class CHRStyle {
     return colors
   }
 
+  /**
+   * Get style's fill colors
+   * @return {Array.<MSColor>}
+   */
   getFillColors() {
     var colors = []
 
@@ -66,14 +83,19 @@ class CHRStyle {
           break
         default:
           // TODO: Better error handling
-          alert("Error: Unknown fill type", fillType);
-          throw -1;
+          alert("Error: Unknown fill type", fillType)
+          throw -1
       }
     }
 
     return colors
   }
 
+  /**
+   * Get a gradient's colors
+   * @param {MSGradient} gradient
+   * @return {Array.<MSColor>}
+   */
   getGradientColors(gradient) {
     var colors = []
 
