@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Chromata</title>
+    <description>A sketch plugin to find and fix layers that have colors
+    outside of your palette.</description>
+    <item>
+      <title>Version 0.2.5</title>
+      <description>
+          <![CDATA[
+            <ul>
+              <li>First release</li>
+            </ul>
+          ]]>
+        </description>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.2.5/chromata.sketchplugin.zip" sparkle:version="1.0.0"/>
+    </item>
+  </channel>
+</rss>
