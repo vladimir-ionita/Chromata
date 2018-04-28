@@ -34,6 +34,46 @@ def bump_version_manifest(version)
   end
 end
 
+def create_item_node(title, changelog, url, version)
+  require 'nokogiri'
+
+  builder = Nokogiri::XML::Builder.new do
+    item {
+      title title
+      description
+      enclosure('url' => url, 'sparkle:version' => version)
+    }
+  end
+
+  builder.doc.xpath('//description').first << builder.doc.create_cdata(changelog)
+
+  return builder.doc.at('//item')
+end
+
+def bump_version_appcast(version, changelog)
+  require 'nokogiri'
+
+  appcast_relative_file_path = '.appcast.xml'
+  appcast_file_path = File.join(File.dirname(__FILE__), appcast_relative_file_path)
+
+  file = File.read(appcast_file_path)
+  xml = Nokogiri::XML(file) do |config|
+    config.default_xml.noblanks
+  end
+
+  channel_node = xml.xpath('//channel').first
+  new_item_node = create_item_node(
+    'Version ' + version,
+    changelog,
+    "https://github.com/abnamrocoesd/Chromata/releases/download/#{version}/chromata.sketchplugin.zip",
+    version
+  )
+  channel_node << new_item_node
+
+  File.open(appcast_file_path, "w") do |f|
+    f.write(xml.to_xml(:indent => 2))
+  end
+end
 
 puts "Chromata version bumper v0.1.0"
 
