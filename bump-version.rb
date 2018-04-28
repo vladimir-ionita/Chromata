@@ -19,6 +19,22 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+def bump_version_manifest(version)
+  require 'json'
+
+  manifest_relative_file_path = 'chromata.sketchplugin/Contents/Sketch/manifest.json'
+  manifest_file_path = File.join(File.dirname(__FILE__), manifest_relative_file_path)
+
+  file = File.read(manifest_file_path)
+  json = JSON.parse(file)
+  json['version'] = version
+
+  File.open(manifest_file_path, "w") do |f|
+    f.write(JSON.pretty_generate(json))
+  end
+end
+
+
 puts "Chromata version bumper v0.1.0"
 
 version = ARGV[0]
