@@ -75,6 +75,19 @@ def bump_version_appcast(version, changelog)
   end
 end
 
+def bump_version_readme(version)
+  readme_relative_file_path = "README.md"
+  readme_file_path = File.join(File.dirname(__FILE__), readme_relative_file_path)
+
+  url_regexp = /https:(.*).svg/
+  new_version_url = "https://img.shields.io/badge/Version-#{version}-green.svg"
+
+  text = File.read(readme_file_path)
+  new_contents = text.sub(url_regexp, new_version_url)
+  File.open(readme_file_path, "w") { |file| file.puts new_contents }
+end
+
+
 puts "Chromata version bumper v0.1.0"
 
 version = ARGV[0]
