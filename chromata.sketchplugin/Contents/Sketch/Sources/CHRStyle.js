@@ -51,7 +51,7 @@ class CHRStyle {
     var colors = []
 
     var borders = this.style.borders()
-    for (var i = 0; i < borders.count(); i++) {
+    for (var i = 0; i < borders.length; i++) {
       var border = borders[0]
       var borderColors = border.isEnabled() ? [border.color()] : []
       colors = colors.concat(borderColors)
@@ -68,7 +68,7 @@ class CHRStyle {
     var colors = []
 
     var fills = this.style.fills()
-    for (var i = 0; i < fills.count(); i++) {
+    for (var i = 0; i < fills.length; i++) {
       var fill = fills[i]
 
       var fillType = fill.fillType()

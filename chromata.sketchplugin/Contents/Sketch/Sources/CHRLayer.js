@@ -73,7 +73,7 @@ class CHRLayer {
       var colors = this.getColorsFromBasicLayer(nestedLayer)
 
       var childrenLayers = nestedLayer.layers();
-      for (var i = 0; i < childrenLayers.count(); i++) {
+      for (var i = 0; i < childrenLayers.length; i++) {
         var layer = childrenLayers[i]
         colors = colors.concat(new CHRLayer(layer).getColorsForLayer())
       }
@@ -85,7 +85,7 @@ class CHRLayer {
       var colors = this.getColorsFromBasicLayer(textLayer)
 
       var stringAttributes = textLayer.attributedStringValue().treeAsDictionary()['attributes']
-      for (var i = 0; i < stringAttributes.count(); i++) {
+      for (var i = 0; i < stringAttributes.length; i++) {
         var attribute = stringAttributes[i]
         var colorString = attribute['MSAttributedStringColorAttribute']['value']
 

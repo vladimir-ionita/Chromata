@@ -47,7 +47,7 @@ function loadPalette() {
   var rawPaletteRgb = CHRUserDefaults.fetchValueForKey('palette')
 
   var palette = []
-  for (var i = 0; i < rawPaletteRgb.count(); i++) {
+  for (var i = 0; i < rawPaletteRgb.length; i++) {
     palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgb[i]))
   }
 

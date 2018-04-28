@@ -31,7 +31,7 @@ class CHRDocument {
     var colorsForAllPages = []
 
     var pages = this.document.pages()
-    for (var i = 0; i < pages.count(); i++) {
+    for (var i = 0; i < pages.length; i++) {
       var page = pages[i]
       var colorsForPage = new CHRPage(page).getColorsForPage()
 

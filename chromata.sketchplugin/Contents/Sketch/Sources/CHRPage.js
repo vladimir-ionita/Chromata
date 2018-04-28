@@ -31,7 +31,7 @@ class CHRPage {
     var colorsForAllLayers = []
 
     var layers = this.page.layers()
-    for (var i = 0; i < layers.count(); i++) {
+    for (var i = 0; i < layers.length; i++) {
       var layer = layers[i]
       var colorsForLayer = new CHRLayer(layer).getColorsForLayer()
 
