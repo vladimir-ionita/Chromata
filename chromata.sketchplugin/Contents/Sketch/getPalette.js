@@ -21,7 +21,6 @@
 
 
 @import 'Sources/CHRLayer.js'
-@import 'Sources/Utilities/CHRArrayHelper.js'
 @import 'Sources/Utilities/CHRUserDefaults.js'
 
 var palette = []

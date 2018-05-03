@@ -21,7 +21,6 @@
 
 
 @import 'Sources/CHRStyle.js'
-@import 'Sources/Utilities/CHRArrayHelper.js'
 @import 'Sources/Utilities/Colors/CHRColorsHelper.js'
 @import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
 
