@@ -39,7 +39,7 @@ var onRun = function(context) {
 
   for (var i = 0; i < selectedLayers.length; i++) {
     var layer = selectedLayers[i]
-    var colorsForLayer = new CHRLayer(layer).getColorsForLayer()
+    var colorsForLayer = new CHRLayer(layer).getLayerColorsMappingsForLayer()
 
     for (var j = 0; j < colorsForLayer.length; j++) {
       var dictionary = colorsForLayer[j]
