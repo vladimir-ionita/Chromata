@@ -22,22 +22,29 @@
 
 @import 'Sources/CHRPage.js'
 
+/** Class representing a wrapper around MSDocument */
 class CHRDocument {
+  /**
+   * Create a CHRDocument from a MSDocument
+   * @param {MSDocument} document
+   */
   constructor(document) {
     this.document = document
   }
 
-  getColorsForDocument() {
-    var colorsForAllPages = []
+  /**
+   * Get the mappings between a page's layers and their colors
+   * @return {Array.<CHRLayerColorsMapping>}
+   */
+  getLayerColorsMappingForDocument() {
+    var mappings = []
 
     var pages = this.document.pages()
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i]
-      var colorsForPage = new CHRPage(page).getLayerColorsMappingsForPage()
-
-      colorsForAllPages = colorsForAllPages.concat(colorsForPage)
+      mappings = mappings.concat(new CHRPage(page).getLayerColorsMappingsForPage())
     }
 
-    return colorsForAllPages
+    return mappings
   }
 }

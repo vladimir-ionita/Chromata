@@ -31,7 +31,7 @@ var onRun = function(context) {
     return
   }
 
-  var layerColorsDictionaries = (new CHRDocument(context.document)).getColorsForDocument()
+  var layerColorsDictionaries = new CHRDocument(context.document).getLayerColorsMappingForDocument()
   var deviatedLayer = getNextDeviatedLayer(layerColorsDictionaries, palette)
   if (typeof deviatedLayer != 'undefined') {
     context.document.setCurrentPage(deviatedLayer.parentPage())
