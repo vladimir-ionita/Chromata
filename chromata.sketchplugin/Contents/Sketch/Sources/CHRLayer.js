@@ -63,15 +63,15 @@ class CHRLayer {
 
         default:
           // TODO: Better error handling
-          alert("Error: Unknown layer class", layerClass);
-          throw -1;
+          alert("Error: Unknown layer class", layerClass)
+          throw -1
       }
     }
 
     getColorsFromNestedLayer(nestedLayer) {
       var colors = this.getColorsFromBasicLayer(nestedLayer)
 
-      var childrenLayers = nestedLayer.layers();
+      var childrenLayers = nestedLayer.layers()
       for (var i = 0; i < childrenLayers.length; i++) {
         var layer = childrenLayers[i]
         colors = colors.concat(new CHRLayer(layer).getColorsForLayer())

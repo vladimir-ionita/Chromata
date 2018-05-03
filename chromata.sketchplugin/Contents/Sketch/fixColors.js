@@ -36,7 +36,7 @@ var onRun = function(context) {
   if (typeof deviatedLayer != 'undefined') {
     context.document.setCurrentPage(deviatedLayer.parentPage())
     context.document.currentPage().changeSelectionBySelectingLayers([])
-    deviatedLayer.select_byExpandingSelection(true, true);
+    deviatedLayer.select_byExpandingSelection(true, true)
   } else {
     context.document.showMessage("You're all set. Your colors match your palette!")
   }
