@@ -26,7 +26,7 @@
 
 var onRun = function(context) {
   var palette = loadPalette()
-  if (len(palette) == 0) {
+  if (palette.length == 0) {
     context.document.showMessage('You have no colors in your palette.')
 
     return
@@ -55,10 +55,10 @@ function loadPalette() {
 }
 
 function getNextDeviatedLayer(layerColorsDictionaries, palette) {
-  for (var i = 0; i < len(layerColorsDictionaries); i++) {
+  for (var i = 0; i < layerColorsDictionaries.length; i++) {
     var layerColors = layerColorsDictionaries[i]['colors']
 
-    for (var j = 0; j < len(layerColors); j++) {
+    for (var j = 0; j < layerColors.length; j++) {
       if (!isColorInPalette(layerColors[j], palette)) {
         return layerColorsDictionaries[i]['layer']
       }
@@ -67,7 +67,7 @@ function getNextDeviatedLayer(layerColorsDictionaries, palette) {
 }
 
 function isColorInPalette(color, palette) {
-  for (var i = 0; i < len(palette); i++) {
+  for (var i = 0; i < palette.length; i++) {
     if (color.fuzzyIsEqual_precision(palette[i], 0.9/255)) {
       return true
     }

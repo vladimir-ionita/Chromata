@@ -42,7 +42,7 @@ var onRun = function(context) {
     var layer = selectedLayers[i]
     var colorsForLayer = new CHRLayer(layer).getColorsForLayer()
 
-    for (var j = 0; j < len(colorsForLayer); j++) {
+    for (var j = 0; j < colorsForLayer.length; j++) {
       var dictionary = colorsForLayer[j]
       var colors = dictionary['colors']
 
@@ -50,9 +50,9 @@ var onRun = function(context) {
     }
   }
 
-  if (len(palette) > 0) {
+  if (palette.length > 0) {
     savePalette(palette)
-    var message = 'Palette saved. You got ' + len(palette) + ' colors in your palette.'
+    var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
     context.document.showMessage(message)
   } else {
     var message = "Palette saved. No colors."

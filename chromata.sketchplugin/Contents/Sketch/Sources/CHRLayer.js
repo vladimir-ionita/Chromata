@@ -105,7 +105,7 @@ class CHRLayer {
     getColorsFromSliceLayer(sliceLayer) {
       var sliceLayerColors = sliceLayer.hasBackgroundColor() ? [sliceLayer.backgroundColor()] : []
 
-      return len(sliceLayerColors) > 0 ? [{
+      return sliceLayerColors.length > 0 ? [{
         'layer': sliceLayer,
         'colors': sliceLayerColors
       }] : []
@@ -114,7 +114,7 @@ class CHRLayer {
     getColorsFromBasicLayer(layer) {
       var layerColors = new CHRStyle(layer.style()).getColors()
 
-      return len(layerColors) > 0 ? [{
+      return layerColors.length > 0 ? [{
         'layer': layer,
         'colors': layerColors
       }] : []
