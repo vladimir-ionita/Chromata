@@ -1,21 +1,21 @@
 {
-  "name" : "Chromata",
-  "identifier" : "vladimirionita.chromata",
-  "version" : "0.1",
-  "description" : "Fix colors from a sketch file to corespond to the palette",
-  "authorEmail" : "ionita.vladimir@gmail.com",
-  "author" : "Vladimir Ionita",
+  "name": "Chromata",
+  "identifier": "vladimirionita.chromata",
+  "version": "0.2.6",
+  "description": "Fix colors from a sketch file to corespond to the palette",
+  "authorEmail": "ionita.vladimir@gmail.com",
+  "author": "Vladimir Ionita",
   "icon": "icon.png",
-  "commands" : [
+  "commands": [
     {
-      "script" : "getPalette.js",
+      "script": "getPalette.js",
       "handler": "onRun",
       "shortcut": "command shift p",
       "name": "Get Palette",
       "identifier": "get-palette"
     },
     {
-      "script" : "fixColors.js",
+      "script": "fixColors.js",
       "handler": "onRun",
       "shortcut": "command shift f",
       "name": "Fix Colors",
