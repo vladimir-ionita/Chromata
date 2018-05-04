@@ -34,6 +34,7 @@ var onRun = function(context) {
   var rogueLayer = getNextRogueLayer(mappings, palette)
   if (typeof rogueLayer != 'undefined') {
     selectLayer(context, rogueLayer)
+    moveViewportFocusToLayer(context, rogueLayer)
   } else {
     context.document.showMessage("You're all set. Your colors match your palette!")
   }
@@ -97,6 +98,26 @@ function selectLayer(context, layer) {
   context.document.currentPage().changeSelectionBySelectingLayers([])
   layer.select_byExpandingSelection(true, true)
 }
+
+
+/**
+ * Move view focus to a specific layer
+ * @param {NSDictionary} context
+ * @param {MSLayer} layer
+ */
+function moveViewportFocusToLayer(context, layer) {
+  var padding = 100
+
+  var focusRect = NSMakeRect(
+    layer.absolutePosition().x - padding,
+    layer.absolutePosition().y - padding,
+    layer.frame().size().width + padding * 2,
+    layer.frame().size().height + padding * 2
+  )
+
+  context.document.currentContentViewController().contentDrawView().zoomToFitRect(focusRect)
+}
+
 
 /**
  * Print palette colors amount and non empty layer mappings amount
