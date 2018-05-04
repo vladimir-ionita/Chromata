@@ -60,46 +60,73 @@ end
 
 ################################################################################
 
-def create_item_node(title, changelog, url, version)
-  require 'nokogiri'
-
-  builder = Nokogiri::XML::Builder.new do
-    item {
-      title title
-      description
-      enclosure('url' => url, 'sparkle:version' => version)
-    }
+class AppcastFileVersionBumper
+  def initialize(file_path)
+    @file_path = file_path
   end
 
-  builder.doc.xpath('//description').first << builder.doc.create_cdata(changelog)
+  def add_release(version, changelog=nil)
+    require 'nokogiri'
 
-  return builder.doc.at('//item')
+    release_title = 'Version ' + version
+    release_url = 'https://github.com/abnamrocoesd/Chromata/releases/download/v%s/chromata.sketchplugin.zip' % [version]
+    release_node = create_release_node(
+      release_title,
+      release_url,
+      version,
+      changelog
+    )
+
+    xml = get_xml_content
+    channel_node = get_channel_node(xml)
+    channel_node << release_node
+    write_xml(xml)
+  end
+
+  private
+  def get_xml_content
+    require 'nokogiri'
+
+    file = File.read(@file_path)
+    return Nokogiri::XML(file) do |config|
+      config.default_xml.noblanks
+    end
+  end
+
+  private
+  def write_xml(xml)
+    File.open(@file_path, 'w') do |file|
+      file.write(xml.to_xml(:indent => 2))
+    end
+  end
+
+  private
+  def get_channel_node(xml)
+    return xml.xpath('//channel').first
+  end
+
+  private
+  def create_release_node(title, url, version, changelog=nil)
+    require 'nokogiri'
+
+    builder = Nokogiri::XML::Builder.new do
+      item {
+        title title
+        description
+        enclosure('url' => url, 'sparkle:version' => version)
+      }
+    end
+
+    unless changelog.nil?
+      changelog_cdata = builder.doc.create_cdata(changelog)
+      builder.doc.xpath('//description').first << changelog_cdata
+    end
+
+    return builder.doc.at('//item')
+  end
 end
 
-def bump_version_appcast(version, changelog)
-  require 'nokogiri'
-
-  appcast_relative_file_path = '.appcast.xml'
-  appcast_file_path = File.join(File.dirname(__FILE__), appcast_relative_file_path)
-
-  file = File.read(appcast_file_path)
-  xml = Nokogiri::XML(file) do |config|
-    config.default_xml.noblanks
-  end
-
-  channel_node = xml.xpath('//channel').first
-  new_item_node = create_item_node(
-    'Version ' + version,
-    changelog,
-    "https://github.com/abnamrocoesd/Chromata/releases/download/#{version}/chromata.sketchplugin.zip",
-    version
-  )
-  channel_node << new_item_node
-
-  File.open(appcast_file_path, "w") do |f|
-    f.write(xml.to_xml(:indent => 2))
-  end
-end
+################################################################################
 
 def bump_version_readme(version)
   readme_relative_file_path = "README.md"
