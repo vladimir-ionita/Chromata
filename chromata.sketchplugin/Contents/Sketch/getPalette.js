@@ -21,15 +21,10 @@
 
 
 @import 'Sources/CHRLayer.js'
-@import 'Storage/CHRUserDefaults.js'
-
-var palette = []
+@import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  var palette = []
-
   var selectedLayers = context.selection
-
   if (selectedLayers.length == 0) {
     var message = "You haven't selected any layers."
     context.document.showMessage(message)
@@ -37,6 +32,7 @@ var onRun = function(context) {
     return
   }
 
+  var palette = []
   for (var i = 0; i < selectedLayers.length; i++) {
     var layer = selectedLayers[i]
     var colorsForLayer = new CHRLayer(layer).getLayerColorsMappingsForLayer()
@@ -50,19 +46,11 @@ var onRun = function(context) {
   }
 
   if (palette.length > 0) {
-    savePalette(palette)
+    CHRPalette.savePalette(palette)
     var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
     context.document.showMessage(message)
   } else {
     var message = "Palette saved. No colors."
     context.document.showMessage(message)
   }
-}
-
-function savePalette(palette) {
-  paletteRgb = palette.map(color => {
-    return color.RGBADictionary()
-  })
-
-  CHRUserDefaults.saveValueForKey(paletteRgb, 'palette')
 }

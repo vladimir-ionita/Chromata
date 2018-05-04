@@ -20,14 +20,13 @@
 */
 
 
-@import 'Storage/CHRUserDefaults.js'
 @import 'Sources/CHRDocument.js'
+@import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  var palette = loadPalette()
+  var palette = CHRPalette.loadPalette()
   if (palette.length == 0) {
     context.document.showMessage('You have no colors in your palette.')
-
     return
   }
 
@@ -40,17 +39,6 @@ var onRun = function(context) {
   } else {
     context.document.showMessage("You're all set. Your colors match your palette!")
   }
-}
-
-function loadPalette() {
-  var rawPaletteRgb = CHRUserDefaults.fetchValueForKey('palette')
-
-  var palette = []
-  for (var i = 0; i < rawPaletteRgb.length; i++) {
-    palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgb[i]))
-  }
-
-  return palette
 }
 
 function getNextDeviatedLayer(layerColorsDictionaries, palette) {
