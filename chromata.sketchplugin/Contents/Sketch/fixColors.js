@@ -59,9 +59,17 @@ function getNextRogueLayer(layerMappings, palette) {
   }
 }
 
+/**
+ * Check if color is in palette
+ * @param {MSColor} color
+ * @param {Array.<MSColor>} palette
+ * @return {boolean}
+ */
 function isColorInPalette(color, palette) {
+  var comparisionPrecision = 0.9/255
+
   for (var i = 0; i < palette.length; i++) {
-    if (color.fuzzyIsEqual_precision(palette[i], 0.9/255)) {
+    if (color.fuzzyIsEqual_precision(palette[i], comparisionPrecision)) {
       return true
     }
   }
