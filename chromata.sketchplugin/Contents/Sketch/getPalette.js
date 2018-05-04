@@ -32,19 +32,7 @@ var onRun = function(context) {
     return
   }
 
-  var palette = []
-  for (var i = 0; i < selectedLayers.length; i++) {
-    var layer = selectedLayers[i]
-    var colorsForLayer = new CHRLayer(layer).getLayerColorsMappingsForLayer()
-
-    for (var j = 0; j < colorsForLayer.length; j++) {
-      var dictionary = colorsForLayer[j]
-      var colors = dictionary['colors']
-
-      palette = palette.concat(colors)
-    }
-  }
-
+  var palette = getColorsFromLayers(selectedLayers)
   if (palette.length > 0) {
     CHRPalette.savePalette(palette)
     var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
@@ -53,4 +41,25 @@ var onRun = function(context) {
     var message = "Palette saved. No colors."
     context.document.showMessage(message)
   }
+}
+
+/**
+ * Get all colors from a list of layers
+ * @param {Array.<MSLayer>} layers
+ * @return {Array.<CHRLayerColorsMapping>}
+ */
+function getColorsFromLayers(layers) {
+  var colors = []
+
+  for (var i = 0; i < layers.length; i++) {
+    var layer = layers[i]
+
+    var layerMappings = new CHRLayer(layer).getLayerColorsMappingsForLayer()
+    for (var j = 0; j < layerMappings.length; j++) {
+      var layerColors = layerMappings[j].colors
+      colors = colors.concat(layerColors)
+    }
+  }
+
+  return colors
 }
