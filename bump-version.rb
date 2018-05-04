@@ -19,20 +19,38 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-def bump_version_manifest(version)
-  require 'json'
+################################################################################
 
-  manifest_relative_file_path = 'chromata.sketchplugin/Contents/Sketch/manifest.json'
-  manifest_file_path = File.join(File.dirname(__FILE__), manifest_relative_file_path)
+class ManifestFileVersionBumper
+  def initialize(file_path)
+    @file_path = file_path
+  end
 
-  file = File.read(manifest_file_path)
-  json = JSON.parse(file)
-  json['version'] = version
+  def bump(version)
+    dictionary = get_json
+    dictionary['version'] = version
+    write_json(dictionary)
+  end
 
-  File.open(manifest_file_path, "w") do |f|
-    f.write(JSON.pretty_generate(json))
+  private
+  def get_json
+    require 'json'
+
+    file = File.read(@file_path)
+    return JSON.parse(file)
+  end
+
+  private
+  def write_json(dictionary)
+    require 'json'
+
+    File.open(@file_path, 'w') do |file|
+      file.write(JSON.pretty_generate(dictionary))
+    end
   end
 end
+
+################################################################################
 
 def create_item_node(title, changelog, url, version)
   require 'nokogiri'
