@@ -87,3 +87,13 @@ function selectLayer(context, layer) {
   context.document.currentPage().changeSelectionBySelectingLayers([])
   layer.select_byExpandingSelection(true, true)
 }
+
+/**
+ * Print palette colors amount and non empty layer mappings amount
+ * @param {Array.<MSColor>} palette
+ * @param {Array.<CHRLayerColorsMapping>} mappings
+ */
+function debugInfo(palette, mappings) {
+  log("Palette: " + palette.length)
+  log("Colors: " + getNonEmptyMappings(mappings).length)
+}
