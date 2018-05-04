@@ -1,8 +1,14 @@
+<div align="center">
+
 # Chromata
 
+### A sketch plugin to find and fix layers that have colors outside of your palette.
 [![Version](https://img.shields.io/badge/Version-0.3.0-green.svg)]()
 [![Compatible Sketch Version](https://img.shields.io/badge/Sketch-49.3-green.svg)]()
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+</div>
+<br></br>
 
 ## Installation
 
