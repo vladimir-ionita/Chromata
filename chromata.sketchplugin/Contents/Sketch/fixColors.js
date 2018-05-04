@@ -30,12 +30,10 @@ var onRun = function(context) {
     return
   }
 
-  var layerColorsDictionaries = new CHRDocument(context.document).getLayerColorsMappingForDocument()
-  var rogueLayer = getNextRogueLayer(layerColorsDictionaries, palette)
+  var mappings = new CHRDocument(context.document).getLayerColorsMappingForDocument()
+  var rogueLayer = getNextRogueLayer(mappings, palette)
   if (typeof rogueLayer != 'undefined') {
-    context.document.setCurrentPage(rogueLayer.parentPage())
-    context.document.currentPage().changeSelectionBySelectingLayers([])
-    rogueLayer.select_byExpandingSelection(true, true)
+    selectLayer(context, rogueLayer)
   } else {
     context.document.showMessage("You're all set. Your colors match your palette!")
   }
@@ -69,4 +67,15 @@ function isColorInPalette(color, palette) {
   }
 
   return false
+}
+
+/**
+ * Select a layer
+ * @param {NSDictionary} context
+ * @param {MSLayer} layer
+ */
+function selectLayer(context, layer) {
+  context.document.setCurrentPage(layer.parentPage())
+  context.document.currentPage().changeSelectionBySelectingLayers([])
+  layer.select_byExpandingSelection(true, true)
 }
