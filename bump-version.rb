@@ -113,6 +113,7 @@ class AppcastFileVersionBumper
       item {
         title title
         description
+        pubDate Time.now.strftime('%a, %-d %b %Y %-k:%M:%S %z')
         enclosure('url' => url, 'sparkle:version' => version)
       }
     end
