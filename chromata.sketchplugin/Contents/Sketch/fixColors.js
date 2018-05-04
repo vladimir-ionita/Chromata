@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/Utilities/CHRUserDefaults.js'
+@import 'Storage/CHRUserDefaults.js'
 @import 'Sources/CHRDocument.js'
 
 var onRun = function(context) {
