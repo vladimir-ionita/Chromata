@@ -20,11 +20,36 @@
 */
 
 
+@import 'Storage/CHRUserDefaults.js'
+
+/** Class representing a palette */
+function CHRPalette() { }
+
 /**
- * Get array's length
- * @param {Array} array
- * @return {number}
+ * Save the palette in user defaults
+ * @param {Array.<MSColor>} palette
  */
-function len(array) {
-  return array.reduce(c => c + 1, 0)
+CHRPalette.savePalette = function(palette) {
+  var paletteRgba = palette.map(color => {
+    return color.RGBADictionary()
+  })
+
+  CHRUserDefaults.saveValueForKey(paletteRgba, 'palette')
+}
+
+/**
+ * Load the pallete from user defaults
+ * Notes: Couldn't use the map function over the array. For some
+ *  unknown reasons, it crashes Sketch
+ * @return {Array.<MSColor>}
+ */
+CHRPalette.loadPalette = function() {
+  var rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
+
+  var palette = []
+  for (var i = 0; i < rawPaletteRgba.length; i++) {
+    palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgba[i]))
+  }
+
+  return palette
 }

@@ -20,31 +20,15 @@
 */
 
 
-@import 'Sources/CHRLayer.js'
-
-/** Class representing a wrapper around MSPage */
-class CHRPage {
+/** Class representing a mapping between a layer and its colors */
+class CHRLayerColorsMapping {
   /**
-   * Create a CHRPage from a MSPage
-   * @param {MSPage} page
+   * Create a mapping between a layer and its colors
+   * @param {MSLayer} layer
+   * @param {Array.<MSColor>} colors
    */
-  constructor(page) {
-    this.page = page
-  }
-
-  /**
-   * Get the mappings between a page's layers and their colors
-   * @return {Array.<CHRLayerColorsMapping>}
-   */
-  getLayerColorsMappingsForPage() {
-    var mappings = []
-
-    var layers = this.page.layers()
-    for (var i = 0; i < layers.length; i++) {
-      var layer = layers[i]
-      mappings = mappings.concat(new CHRLayer(layer).getLayerColorsMappingsForLayer())
-    }
-
-    return mappings
+  constructor(layer, colors) {
+    this.layer = layer
+    this.colors = colors
   }
 }

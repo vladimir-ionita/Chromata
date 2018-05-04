@@ -36,7 +36,7 @@ function CHRColorRgbaRepresentation(r, g, b, a) {
 CHRColorRgbaRepresentation.createFromRgbaDescription = function(rgbaDescription) {
   var rgbaDescriptionValues = rgbaDescription.substring(rgbaDescription.indexOf('(') + 1, rgbaDescription.indexOf(')'))
   var rgbaValues = rgbaDescriptionValues.split(',')
-  if (len(rgbaValues) < 4) {
+  if (rgbaValues.length < 4) {
     return null
   }
 

@@ -20,58 +20,90 @@
 */
 
 
-@import 'Sources/Utilities/CHRUserDefaults.js'
-@import 'Sources/Utilities/CHRArrayHelper.js'
 @import 'Sources/CHRDocument.js'
+@import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  var palette = loadPalette()
-  if (len(palette) == 0) {
+  var palette = CHRPalette.loadPalette()
+  if (palette.length == 0) {
     context.document.showMessage('You have no colors in your palette.')
-
     return
   }
 
-  var layerColorsDictionaries = (new CHRDocument(context.document)).getColorsForDocument()
-  var deviatedLayer = getNextDeviatedLayer(layerColorsDictionaries, palette)
-  if (typeof deviatedLayer != 'undefined') {
-    context.document.setCurrentPage(deviatedLayer.parentPage())
-    context.document.currentPage().changeSelectionBySelectingLayers([])
-    deviatedLayer.select_byExpandingSelection(true, true);
+  var mappings = new CHRDocument(context.document).getLayerColorsMappingForDocument()
+  var rogueLayer = getNextRogueLayer(mappings, palette)
+  if (typeof rogueLayer != 'undefined') {
+    selectLayer(context, rogueLayer)
   } else {
     context.document.showMessage("You're all set. Your colors match your palette!")
   }
 }
 
-function loadPalette() {
-  var rawPaletteRgb = CHRUserDefaults.fetchValueForKey('palette')
-
-  var palette = []
-  for (var i = 0; i < rawPaletteRgb.count(); i++) {
-    palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgb[i]))
-  }
-
-  return palette
+/**
+ * Get non-empty mappings
+ * An empty mapping is a mapping with no colors
+ * @param {Array.CHRLayerColorsMapping} mappings
+ * @return {Array.CHRLayerColorsMapping}
+ */
+function getNonEmptyMappings(mappings) {
+  return mappings.filter(mapping => mapping.colors.length > 0)
 }
 
-function getNextDeviatedLayer(layerColorsDictionaries, palette) {
-  for (var i = 0; i < len(layerColorsDictionaries); i++) {
-    var layerColors = layerColorsDictionaries[i]['colors']
+/**
+ * Get next rogue layer
+ * A rogue layers is a layer that has its colors outside of the palette
+ * @param {Array.<CHRLayerColorsMapping>} layerMappings
+ * @param {Array.<MSColor>} palette
+ * @return {MSLayer}
+ */
+function getNextRogueLayer(layerMappings, palette) {
+  for (var i = 0; i < layerMappings.length; i++) {
+    var mapping = layerMappings[i]
 
-    for (var j = 0; j < len(layerColors); j++) {
+    var layerColors = mapping.colors
+    for (var j = 0; j < layerColors.length; j++) {
       if (!isColorInPalette(layerColors[j], palette)) {
-        return layerColorsDictionaries[i]['layer']
+        return mapping.layer
       }
     }
   }
 }
 
+/**
+ * Check if color is in palette
+ * @param {MSColor} color
+ * @param {Array.<MSColor>} palette
+ * @return {boolean}
+ */
 function isColorInPalette(color, palette) {
-  for (var i = 0; i < len(palette); i++) {
-    if (color.fuzzyIsEqual_precision(palette[i], 0.9/255)) {
+  var comparisionPrecision = 0.9/255
+
+  for (var i = 0; i < palette.length; i++) {
+    if (color.fuzzyIsEqual_precision(palette[i], comparisionPrecision)) {
       return true
     }
   }
 
   return false
+}
+
+/**
+ * Select a layer
+ * @param {NSDictionary} context
+ * @param {MSLayer} layer
+ */
+function selectLayer(context, layer) {
+  context.document.setCurrentPage(layer.parentPage())
+  context.document.currentPage().changeSelectionBySelectingLayers([])
+  layer.select_byExpandingSelection(true, true)
+}
+
+/**
+ * Print palette colors amount and non empty layer mappings amount
+ * @param {Array.<MSColor>} palette
+ * @param {Array.<CHRLayerColorsMapping>} mappings
+ */
+function debugInfo(palette, mappings) {
+  log("Palette: " + palette.length)
+  log("Colors: " + getNonEmptyMappings(mappings).length)
 }

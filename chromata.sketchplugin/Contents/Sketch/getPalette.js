@@ -21,38 +21,21 @@
 
 
 @import 'Sources/CHRLayer.js'
-@import 'Sources/Utilities/CHRArrayHelper.js'
-@import 'Sources/Utilities/CHRUserDefaults.js'
-
-var palette = []
+@import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  var palette = []
-
   var selectedLayers = context.selection
-
-  if (selectedLayers.count() == 0) {
+  if (selectedLayers.length == 0) {
     var message = "You haven't selected any layers."
     context.document.showMessage(message)
 
     return
   }
 
-  for (var i = 0; i < selectedLayers.count(); i++) {
-    var layer = selectedLayers[i]
-    var colorsForLayer = new CHRLayer(layer).getColorsForLayer()
-
-    for (var j = 0; j < len(colorsForLayer); j++) {
-      var dictionary = colorsForLayer[j]
-      var colors = dictionary['colors']
-
-      palette = palette.concat(colors)
-    }
-  }
-
-  if (len(palette) > 0) {
-    savePalette(palette)
-    var message = 'Palette saved. You got ' + len(palette) + ' colors in your palette.'
+  var palette = getColorsFromLayers(selectedLayers)
+  if (palette.length > 0) {
+    CHRPalette.savePalette(palette)
+    var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
     context.document.showMessage(message)
   } else {
     var message = "Palette saved. No colors."
@@ -60,10 +43,23 @@ var onRun = function(context) {
   }
 }
 
-function savePalette(palette) {
-  paletteRgb = palette.map(color => {
-    return color.RGBADictionary()
-  })
+/**
+ * Get all colors from a list of layers
+ * @param {Array.<MSLayer>} layers
+ * @return {Array.<CHRLayerColorsMapping>}
+ */
+function getColorsFromLayers(layers) {
+  var colors = []
 
-  CHRUserDefaults.saveValueForKey(paletteRgb, 'palette')
+  for (var i = 0; i < layers.length; i++) {
+    var layer = layers[i]
+
+    var layerMappings = new CHRLayer(layer).getLayerColorsMappingsForLayer()
+    for (var j = 0; j < layerMappings.length; j++) {
+      var layerColors = layerMappings[j].colors
+      colors = colors.concat(layerColors)
+    }
+  }
+
+  return colors
 }

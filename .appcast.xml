@@ -2,8 +2,7 @@
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <title>Chromata</title>
-    <description>A sketch plugin to find and fix layers that have colors
-    outside of your palette.</description>
+    <description>A sketch plugin to find and fix layers that have colors outside of your palette.</description>
     <item>
       <title>Version 0.2.5</title>
       <description>
