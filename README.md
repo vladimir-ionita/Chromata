@@ -4,7 +4,6 @@
 
 The color finder plugin for sketch 49.3.
 
-P.S. This repository should be moved to Github.
 
 ## Installation
 
