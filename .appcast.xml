@@ -3,6 +3,7 @@
   <channel>
     <title>Chromata</title>
     <description>A sketch plugin to find and fix layers that have colors outside of your palette.</description>
+    <language>en</language>
     <item>
       <title>Version 0.2.5</title>
       <description>
