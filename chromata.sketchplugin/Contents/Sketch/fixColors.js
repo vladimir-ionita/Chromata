@@ -31,23 +31,31 @@ var onRun = function(context) {
   }
 
   var layerColorsDictionaries = new CHRDocument(context.document).getLayerColorsMappingForDocument()
-  var deviatedLayer = getNextDeviatedLayer(layerColorsDictionaries, palette)
-  if (typeof deviatedLayer != 'undefined') {
-    context.document.setCurrentPage(deviatedLayer.parentPage())
+  var rogueLayer = getNextRogueLayer(layerColorsDictionaries, palette)
+  if (typeof rogueLayer != 'undefined') {
+    context.document.setCurrentPage(rogueLayer.parentPage())
     context.document.currentPage().changeSelectionBySelectingLayers([])
-    deviatedLayer.select_byExpandingSelection(true, true)
+    rogueLayer.select_byExpandingSelection(true, true)
   } else {
     context.document.showMessage("You're all set. Your colors match your palette!")
   }
 }
 
-function getNextDeviatedLayer(layerColorsDictionaries, palette) {
-  for (var i = 0; i < layerColorsDictionaries.length; i++) {
-    var layerColors = layerColorsDictionaries[i]['colors']
+/**
+ * Get next rogue layer
+ * A rogue layers is a layer that has its colors outside of the palette
+ * @param {Array.<CHRLayerColorsMapping>} layerMappings
+ * @param {Array.<MSColor>} palette
+ * @return {MSLayer}
+ */
+function getNextRogueLayer(layerMappings, palette) {
+  for (var i = 0; i < layerMappings.length; i++) {
+    var mapping = layerMappings[i]
 
+    var layerColors = mapping.colors
     for (var j = 0; j < layerColors.length; j++) {
       if (!isColorInPalette(layerColors[j], palette)) {
-        return layerColorsDictionaries[i]['layer']
+        return mapping.layer
       }
     }
   }
