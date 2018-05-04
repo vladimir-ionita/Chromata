@@ -157,12 +157,28 @@ end
 
 ################################################################################
 
-puts "Chromata version bumper v0.1.0"
+# TODO: get args from command line (version and changelog)
+# TODO: create a changelog builder
+# TODO: check for release option and only then release on app cast
+
+puts 'Chromata version bumper v0.1.0'
 
 version = ARGV[0]
 if version.nil?
-  puts "usage: ruby bump-version.rb <version_number>"
+  puts 'usage: ruby bump-version.rb <version_number>'
   exit 1
 end
 
-puts "Version bump to " + version
+puts 'Bump version to ' + version
+
+# manifest_file_path = FileHelper.absolute_file_path('chromata.sketchplugin/Contents/Sketch/manifest.json')
+# ManifestFileVersionBumper.new(manifest_file_path).bump(version)
+# puts "  Manifest version bumped.. Done" #check if true first
+
+# readme_file_path = FileHelper.absolute_file_path('README.md')
+# ReadmeFileVersionBumper.new(readme_file_path).bump(version)
+# puts "  Readme version bumped.. Done" #check if true first
+
+# appcast_file_path = FileHelper.absolute_file_path('.appcast.xml')
+# AppcastFileVersionBumper.new(appcast_file_path).add_release(version, 'changelog-test')
+# puts "  Appcast version bumped.. Done" #check if true first
