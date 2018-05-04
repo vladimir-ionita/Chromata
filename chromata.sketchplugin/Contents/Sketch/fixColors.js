@@ -40,6 +40,16 @@ var onRun = function(context) {
 }
 
 /**
+ * Get non-empty mappings
+ * An empty mapping is a mapping with no colors
+ * @param {Array.CHRLayerColorsMapping} mappings
+ * @return {Array.CHRLayerColorsMapping}
+ */
+function getNonEmptyMappings(mappings) {
+  return mappings.filter(mapping => mapping.colors.length > 0)
+}
+
+/**
  * Get next rogue layer
  * A rogue layers is a layer that has its colors outside of the palette
  * @param {Array.<CHRLayerColorsMapping>} layerMappings
