@@ -21,6 +21,14 @@
 
 ################################################################################
 
+class FileHelper
+  def self.absolute_file_path(relative_file_path)
+    return File.join(File.dirname(__FILE__), relative_file_path)
+  end
+end
+
+################################################################################
+
 class ManifestFileVersionBumper
   def initialize(file_path)
     @file_path = file_path
