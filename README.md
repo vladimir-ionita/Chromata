@@ -1,9 +1,8 @@
 # Chromata
 
 [![Version](https://img.shields.io/badge/Version-0.3.0-green.svg)]()
+[![Compatible Sketch Version](https://img.shields.io/badge/Sketch-49.3-green.svg)]()
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
-The color finder plugin for sketch 49.3.
 
 ## Installation
 
