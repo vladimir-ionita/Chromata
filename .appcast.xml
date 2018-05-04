@@ -13,7 +13,7 @@
             </ul>
           ]]>
         </description>
-      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.2.5/chromata.sketchplugin.zip" sparkle:version="1.0.0"/>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.2.5/chromata.sketchplugin.zip" sparkle:version="0.2.5"/>
     </item>
   </channel>
 </rss>
