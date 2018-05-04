@@ -2,7 +2,7 @@
   "name": "Chromata",
   "identifier": "vladimirionita.chromata",
   "version": "0.3.2",
-  "description": "Fix colors from a sketch file to corespond to the palette",
+  "description": "A sketch plugin to find and fix layers that have colors outside of your palette.",
   "authorEmail": "ionita.vladimir@gmail.com",
   "author": "Vladimir Ionita",
   "icon": "icon.png",
