@@ -57,9 +57,7 @@ class CHRLayer {
         return [this.getLayerColorsMappingForALeafSliceLayer(this.layer)]
 
       case MSShapeGroup:
-        return [this.getLayerColorsMappingForALeafLayer(this.layer)]
       case MSSymbolInstance:
-        return [this.getLayerColorsMappingForALeafLayer(this.layer)]
       case MSBitmapLayer:
         return [this.getLayerColorsMappingForALeafLayer(this.layer)]
 
