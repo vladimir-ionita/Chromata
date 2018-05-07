@@ -225,7 +225,7 @@ class ScriptOptions
 
   private
   def add_changelog_option(parser)
-    parser.on("--changelog 'x','y','z'", "Specify the changelog for the release") do |changelog|
+    parser.on("--changelog 'x','y','z'", Array, "Specify the changelog for the release") do |changelog|
       @changelog = changelog
     end
   end
