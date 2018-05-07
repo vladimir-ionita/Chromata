@@ -102,11 +102,14 @@ class CHRLayer {
     getLayerColorsMappingForALeafTextLayer(textLayer) {
       var layerColors = this.getLayerColorsMappingForALeafLayer(textLayer).colors
 
-      var stringAttributes = textLayer.attributedStringValue().treeAsDictionary()['attributes']
-      for (var i = 0; i < stringAttributes.length; i++) {
-        var attribute = stringAttributes[i]
-        var colorString = attribute['MSAttributedStringColorAttribute']['value']
+      var textAttributes = textLayer.attributedStringValue().treeAsDictionary().attributes
+      for (var i = 0; i < textAttributes.length; i++) {
+        var attribute = textAttributes[i]
+        if (attribute.MSAttributedStringColorAttribute == undefined) {
+          continue
+        }
 
+        var colorString = attribute.MSAttributedStringColorAttribute.value
         if (isHexRepresentationOfAColor(colorString)) {
           layerColors.push(CHRMSColorFactory.createFromHexRepresentation(colorString))
         } else if (isRgbaDescriptionOfAColor(colorString)) {
