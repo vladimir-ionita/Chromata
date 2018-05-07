@@ -243,7 +243,6 @@ end
 ################################################################################
 
 # TODO: create a changelog builder
-# TODO: check for release option and only then release on app cast
 
 Version = "0.2.0"
 puts 'Chromata version bumper v%s' % [Version]
@@ -267,6 +266,13 @@ else
   puts "  Readme version bump.. Done" #check if true first
 end
 
-# appcast_file_path = FileHelper.absolute_file_path('.appcast.xml')
-# AppcastFileVersionBumper.new(appcast_file_path).add_release(version, 'changelog-test')
-# puts "  Appcast version bumped.. Done" #check if true first
+if options.release == true
+  if options.changelog.nil?
+    puts "  No changelog specified."
+    puts "  This version will be released without any changelog."
+  end
+
+  appcast_file_path = FileHelper.absolute_file_path('.appcast.xml')
+  AppcastFileVersionBumper.new(appcast_file_path).add_release(version, options.changelog)
+  puts "  Add release to appcast.. Done"
+end
