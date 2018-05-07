@@ -192,7 +192,7 @@ class ScriptOptions
   end
 
   def define_banner(parser)
-    parser.banner = "Usage: bump-version.rb [options]"
+    parser.banner = "Usage: #{$0} [options]"
     parser.separator ""
   end
 
