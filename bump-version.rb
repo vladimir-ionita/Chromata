@@ -98,7 +98,7 @@ class AppcastFileVersionBumper
       release_title,
       release_url,
       version,
-      changelog
+      HTMLChangelogBuilder.create_html(changelog)
     )
 
     xml = get_xml_content
