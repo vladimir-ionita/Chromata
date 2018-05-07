@@ -158,6 +158,74 @@ end
 
 ################################################################################
 
+class ScriptOptions
+  attr_accessor :bump_version, :release, :changelog
+
+  def initialize
+    @bump_version = nil
+    @release = false
+    @changelog = nil
+  end
+
+  def define_banner(parser)
+    parser.banner = "Usage: bump-version.rb [options]"
+    parser.separator ""
+  end
+
+  def define_options(parser)
+    add_bump_option(parser)
+    add_release_option(parser)
+    add_changelog_option(parser)
+    add_help_option(parser)
+    add_version_option(parser)
+  end
+
+  private
+  def add_bump_option(parser)
+    parser.on("--bump [STRING]", "Specifiy the version to bump to") do |bump_version|
+      version_regexp = /^(\d+\.)?(\d+\.)?(\d+)$/
+      if bump_version.match(version_regexp).to_s == bump_version
+        @bump_version = bump_version
+      else
+        parser.abort "Version should match the following format: x.y.z"
+      end
+    end
+  end
+
+  private
+  def add_release_option(parser)
+    parser.on("--release", "Make this version a release") do |release|
+      @release = true
+    end
+  end
+
+  private
+  def add_changelog_option(parser)
+    parser.on("--changelog 'x','y','z'", "Specify the changelog for the release") do |changelog|
+      @changelog = changelog
+    end
+  end
+
+  private
+  def add_help_option(parser)
+    parser.on_tail("-h", "--help", "Show this message") do
+      puts parser
+      exit
+    end
+  end
+
+  private
+  def add_version_option(parser)
+    parser.on_tail("--version", "Show version") do
+        puts Version
+        exit
+      end
+  end
+end
+
+################################################################################
+
+
 # TODO: get args from command line (version and changelog)
 # TODO: create a changelog builder
 # TODO: check for release option and only then release on app cast
