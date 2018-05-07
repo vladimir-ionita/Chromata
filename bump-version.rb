@@ -289,6 +289,7 @@ else
 end
 
 if options.release == true
+  puts "Release version"
   if options.changelog.nil?
     puts "  No changelog specified."
     puts "  This version will be released without any changelog."
