@@ -60,6 +60,30 @@ end
 
 ################################################################################
 
+class HTMLChangelogBuilder
+  def self.create_html(changelog)
+    html = ""
+
+    changelog.each do |element|
+      html << make_list_item(element)
+    end
+
+    return make_unordered_list(html)
+  end
+
+  private
+  def self.make_list_item(value)
+    return "<li>" + value + "</li>\n"
+  end
+
+  private
+  def self.make_unordered_list(value)
+    return "<ul>\n" + value + "</ul>\n"
+  end
+end
+
+################################################################################
+
 class AppcastFileVersionBumper
   def initialize(file_path)
     @file_path = file_path
@@ -241,8 +265,6 @@ class ScriptOptionsParser
 end
 
 ################################################################################
-
-# TODO: create a changelog builder
 
 Version = "0.2.0"
 puts 'Chromata version bumper v%s' % [Version]
