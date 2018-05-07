@@ -225,8 +225,23 @@ end
 
 ################################################################################
 
+class ScriptOptionsParser
+  def parse(args)
+    require 'optparse'
 
-# TODO: get args from command line (version and changelog)
+    @options = ScriptOptions.new
+    OptionParser.new do |parser|
+      @options.define_banner(parser)
+      @options.define_options(parser)
+      parser.parse!(args)
+    end
+
+    return @options
+  end
+end
+
+################################################################################
+
 # TODO: create a changelog builder
 # TODO: check for release option and only then release on app cast
 
