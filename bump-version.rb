@@ -245,7 +245,9 @@ end
 # TODO: create a changelog builder
 # TODO: check for release option and only then release on app cast
 
-puts 'Chromata version bumper v0.1.0'
+Version = "0.2.0"
+puts 'Chromata version bumper v%s' % [Version]
+puts
 
 version = ARGV[0]
 if version.nil?
