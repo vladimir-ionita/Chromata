@@ -280,11 +280,11 @@ else
   puts 'Bump version to ' + options.bump_version
 
   manifest_file_path = FileHelper.absolute_file_path('chromata.sketchplugin/Contents/Sketch/manifest.json')
-  ManifestFileVersionBumper.new(manifest_file_path).bump(version)
+  ManifestFileVersionBumper.new(manifest_file_path).bump(options.bump_version)
   puts "  Manifest version bump.. Done" #check if true first
 
   readme_file_path = FileHelper.absolute_file_path('README.md')
-  ReadmeFileVersionBumper.new(readme_file_path).bump(version)
+  ReadmeFileVersionBumper.new(readme_file_path).bump(options.bump_version)
   puts "  Readme version bump.. Done" #check if true first
 end
 
@@ -296,6 +296,6 @@ if options.release == true
   end
 
   appcast_file_path = FileHelper.absolute_file_path('.appcast.xml')
-  AppcastFileVersionBumper.new(appcast_file_path).add_release(version, options.changelog)
+  AppcastFileVersionBumper.new(appcast_file_path).add_release(options.bump_version, options.changelog)
   puts "  Add release to appcast.. Done"
 end
