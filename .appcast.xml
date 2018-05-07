@@ -6,15 +6,32 @@
     <language>en</language>
     <item>
       <title>Version 0.2.5</title>
-      <description>
-          <![CDATA[
+      <description><![CDATA[
             <ul>
               <li>First release</li>
             </ul>
-          ]]>
-        </description>
+          ]]></description>
       <pubDate>Sat, 28 Apr 2018 10:56:00 +0200</pubDate>
       <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.2.5/chromata.sketchplugin.zip" sparkle:version="0.2.5"/>
+    </item>
+    <item>
+      <title>Version 0.3.5</title>
+      <description><![CDATA[
+        Direct impact:
+        <ul>
+          <li>New feature: focus on the selected rogue layer</li>
+          <li>Issue fix: get color from a text layer with a fill color (only attributed string worked until now)</li>
+          <li>Add update mechanism</li>
+        </ul>
+        Indirect impact:
+        <ul>
+          <li>Add version bump script and release script</li>
+          <li>Add documentation</li>
+          <li>Major refactoring</li>
+        </ul>
+      ]]></description>
+      <pubDate>Mon, 7 May 2018 23:29:44 +0200</pubDate>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.3.5/chromata.sketchplugin.zip" sparkle:version="0.3.5"/>
     </item>
   </channel>
 </rss>
