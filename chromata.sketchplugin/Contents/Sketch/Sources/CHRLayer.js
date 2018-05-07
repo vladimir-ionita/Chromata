@@ -47,9 +47,7 @@ class CHRLayer {
     var layerClass = this.layer.class()
     switch (layerClass) {
       case MSArtboardGroup:
-        return this.getLayerColorsMappingsForANestedLayer(this.layer)
       case MSSymbolMaster:
-        return this.getLayerColorsMappingsForANestedLayer(this.layer)
       case MSLayerGroup:
         return this.getLayerColorsMappingsForANestedLayer(this.layer)
 
