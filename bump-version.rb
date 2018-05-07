@@ -94,11 +94,12 @@ class AppcastFileVersionBumper
 
     release_title = 'Version ' + version
     release_url = 'https://github.com/abnamrocoesd/Chromata/releases/download/v%s/chromata.sketchplugin.zip' % [version]
+    changelog = HTMLChangelogBuilder.create_html(changelog) unless changelog.nil?
     release_node = create_release_node(
       release_title,
       release_url,
       version,
-      HTMLChangelogBuilder.create_html(changelog)
+      changelog
     )
 
     xml = get_xml_content
