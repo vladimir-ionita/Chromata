@@ -68,7 +68,7 @@ class HTMLChangelogBuilder
       html << make_list_item(element)
     end
 
-    return make_unordered_list(html)
+    return "\n" + make_unordered_list(html)
   end
 
   private
