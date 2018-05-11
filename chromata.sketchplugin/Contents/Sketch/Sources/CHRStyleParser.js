@@ -20,71 +20,63 @@
 */
 
 
-/** Class representing a wrapper around MSStyle */
-class CHRStyle {
-  /**
-   * Create a CHRStyle from a MSStyle
-   * @param {MSStyle} style
-   */
-  constructor(style) {
-    this.style = style
-  }
+/**
+ * Class representing a parser around MSStyle
+ * @class
+ */
+function CHRStyleParser() {}
+
+/**
+ * Get style's colors
+ * @param {MSStyle} style
+ *
+ * @return {Array.<MSColor>}
+ */
+CHRStyleParser.getColors = (function() {
+  @import 'Sources/Utilities/CHRErrorHandler.js'
 
   /**
-   * Get style's colors
+   * Get borders colors
+   * @param {Array.<MSStyleBorder>} borders
+   *
    * @return {Array.<MSColor>}
    */
-  getColors() {
+  function getBordersColors(borders) {
     var colors = []
 
-    colors = colors.concat(this.getBorderColors())
-    colors = colors.concat(this.getFillColors())
-
-    return colors
-  }
-
-  /**
-   * Get style's border colors
-   * @return {Array.<MSColor>}
-   */
-  getBorderColors() {
-    var colors = []
-
-    var borders = this.style.borders()
-    for (var i = 0; i < borders.length; i++) {
-      var border = borders[0]
-      var borderColors = border.isEnabled() ? [border.color()] : []
-      colors = colors.concat(borderColors)
+    for (let i = 0; i < borders.length; i++) {
+      var borderColor = borders[i].color()
+      colors.push(borderColor)
     }
 
     return colors
   }
 
   /**
-   * Get style's fill colors
+   * Get fills colors
+   * @param {Array.<MSStyleFill>} fills
+   *
    * @return {Array.<MSColor>}
    */
-  getFillColors() {
+  function getFillsColors(fills) {
     var colors = []
 
-    var fills = this.style.fills()
-    for (var i = 0; i < fills.length; i++) {
+    for (let i = 0; i < fills.length; i++) {
       var fill = fills[i]
 
       var fillType = fill.fillType()
       switch(fillType) {
         case 0: // Solid Color
-          var fillColors = fill.isEnabled() ? [fill.color()] : []
-          colors = colors.concat(fillColors)
+          var fillColor = fill.color()
+          colors.push(fillColor)
           break
         case 1: // Gradient
-          var gradientColors = this.getGradientColors(fill.gradient())
+          var gradientColors = getGradientColors(fill.gradient())
           colors = colors.concat(gradientColors)
           break
         default:
-          // TODO: Better error handling
-          alert("Error: Unknown fill type", fillType)
-          throw -1
+          var errorMessage = 'Warning. Unknown fill type: ' + fillType + '.'
+          raiseWarningError(errorMessage)
       }
     }
 
@@ -94,16 +86,26 @@ class CHRStyle {
   /**
    * Get a gradient's colors
    * @param {MSGradient} gradient
+   *
    * @return {Array.<MSColor>}
    */
-  getGradientColors(gradient) {
+  function getGradientColors(gradient) {
     var colors = []
 
     var gradientStops = gradient.stops()
-    for (var i = 0; i < gradientStops; i++) {
-      colors = colors.concat(gradientStop.color())
+    for (let i = 0; i < gradientStops.length; i++) {
+      colors = colors.concat(gradientStops[i].color())
     }
 
     return colors
   }
-}
+
+  return function(style) {
+    var colors = []
+
+    colors = colors.concat(getBordersColors(style.enabledBorders()))
+    colors = colors.concat(getFillsColors(style.enabledFills()))
+
+    return colors
+  }
+})()

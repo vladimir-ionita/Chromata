@@ -24,6 +24,8 @@
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
+  globalContext = context
+
   var selectedLayers = context.selection
   if (selectedLayers.length == 0) {
     var message = "You haven't selected any layers."

@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRStyle.js'
+@import 'Sources/CHRStyleParser.js'
 @import 'Sources/CHRLayerColorsMapping.js'
 @import 'Sources/Utilities/Colors/CHRColorsHelper.js'
 @import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
@@ -136,7 +136,7 @@ class CHRLayer {
      * @return {CHRLayerColorsMapping}
      */
     getLayerColorsMappingForALeafLayer(layer) {
-      var layerColors = new CHRStyle(layer.style()).getColors()
+      var layerColors = CHRStyleParser.getColors(layer.style())
       return new CHRLayerColorsMapping(layer, layerColors)
     }
 }
