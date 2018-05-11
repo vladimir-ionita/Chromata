@@ -20,15 +20,15 @@
 */
 
 
-/** Class representing a mapping between a layer and its colors */
-class CHRLayerColorsMapping {
-  /**
-   * Create a mapping between a layer and its colors
-   * @param {MSLayer} layer
-   * @param {Array.<MSColor>} colors
-   */
-  constructor(layer, colors) {
-    this.layer = layer
-    this.colors = colors
-  }
+/** Class representing a mapping between a layer and its colors
+ * @class
+ *
+ * @constructor
+ *
+ * @property {MSLayer} layer - The layer
+ * @property {Array.<MSColor>} colors - The colors of the layer
+ */
+function CHRLayerColorsMapping(layer, colors) {
+  this.layer = layer
+  this.colors = colors
 }
