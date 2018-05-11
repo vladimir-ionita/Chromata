@@ -29,14 +29,6 @@
 /** Class representing a wrapper around MSLayer */
 class CHRLayer {
   /**
-   * Create a CHRLayer from a MSLayer
-   * @param {MSLayer} layer
-   */
-  constructor(layer) {
-    this.layer = layer
-  }
-
-  /**
    * Get the mappings for a layer
    * @param {MSLayer} layer
    * @return {Array.<CHRLayerColorsMapping>}
