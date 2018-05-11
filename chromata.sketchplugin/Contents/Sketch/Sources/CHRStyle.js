@@ -39,7 +39,7 @@ function CHRStyle(style) {
     var colors = []
 
     colors = colors.concat(getBorderColors())
-    colors = colors.concat(getFillColors())
+    colors = colors.concat(getFillsColors(that.style.enabledFills()))
 
     return colors
   }
@@ -62,21 +62,22 @@ function CHRStyle(style) {
   }
 
   /**
-   * Get style's fill colors
+   * Get fills colors
+   * @param {Array.<MSStyleFill>} fills
+   *
    * @return {Array.<MSColor>}
    */
-  var getFillColors = function() {
+  var getFillsColors = function(fills) {
     var colors = []
 
-    var fills = that.style.fills()
-    for (var i = 0; i < fills.length; i++) {
+    for (let i = 0; i < fills.length; i++) {
       var fill = fills[i]
 
       var fillType = fill.fillType()
       switch(fillType) {
         case 0: // Solid Color
-          var fillColors = fill.isEnabled() ? [fill.color()] : []
-          colors = colors.concat(fillColors)
+          var fillColor = fill.color()
+          colors.push(fillColor)
           break
         case 1: // Gradient
           var gradientColors = getGradientColors(fill.gradient())
