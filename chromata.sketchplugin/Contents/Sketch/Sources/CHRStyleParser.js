@@ -20,10 +20,11 @@
 */
 
 
-/** Class representing a wrapper around MSStyle
+/**
+ * Class representing a parser around MSStyle
  * @class
  */
-var CHRStyle = (function() {
+var CHRStyleParser = (function() {
   @import 'Sources/Utilities/CHRErrorHandler.js'
 
   /**
