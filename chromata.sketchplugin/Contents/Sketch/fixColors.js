@@ -24,6 +24,8 @@
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
+  globalContext = context
+  
   var palette = CHRPalette.loadPalette()
   if (palette.length == 0) {
     context.document.showMessage('You have no colors in your palette.')
