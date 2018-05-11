@@ -53,7 +53,7 @@ function CHRStyle(style) {
 
     var borders = that.style.borders()
     for (var i = 0; i < borders.length; i++) {
-      var border = borders[0]
+      var border = borders[i]
       var borderColors = border.isEnabled() ? [border.color()] : []
       colors = colors.concat(borderColors)
     }
