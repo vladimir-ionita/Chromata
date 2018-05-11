@@ -27,7 +27,7 @@
 @import 'Sources/Utilities/CHRErrorHandler.js'
 
 /** Class representing a wrapper around MSLayer */
-class CHRLayer {
+class CHRLayerParser {
   /**
    * Get the mappings for a layer
    * @param {MSLayer} layer
@@ -78,7 +78,7 @@ class CHRLayer {
       var childrenLayers = nestedLayer.layers()
       for (var i = 0; i < childrenLayers.length; i++) {
         var layer = childrenLayers[i]
-        mappings = mappings.concat(new CHRLayer().getLayerColorsMappingsForLayer(layer))
+        mappings = mappings.concat(new CHRLayerParser().getLayerColorsMappingsForLayer(layer))
       }
 
       return mappings
