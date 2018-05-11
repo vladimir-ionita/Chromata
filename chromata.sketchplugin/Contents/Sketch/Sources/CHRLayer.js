@@ -24,6 +24,7 @@
 @import 'Sources/CHRLayerColorsMapping.js'
 @import 'Sources/Utilities/Colors/CHRColorsHelper.js'
 @import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
+@import 'Sources/Utilities/CHRErrorHandler.js'
 
 /** Class representing a wrapper around MSLayer */
 class CHRLayer {
@@ -111,7 +112,8 @@ class CHRLayer {
         } else if (isRgbaDescriptionOfAColor(colorString)) {
           layerColors.push(CHRMSColorFactory.createFromRgbaDescription(colorString))
         } else {
-          log("Error: 'getLayerColorsMappingForALeafTextLayer' found a color that is not a hex description and nor a rgba description")
+          var errorMessage = "Warning: 'getLayerColorsMappingForALeafTextLayer' found a color that is not a hex description and nor a rgba description"
+          raiseWarningError(errorMessage)
         }
       }
 
