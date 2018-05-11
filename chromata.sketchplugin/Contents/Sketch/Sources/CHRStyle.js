@@ -20,25 +20,26 @@
 */
 
 
-/** Class representing a wrapper around MSStyle */
-class CHRStyle {
-  /**
-   * Create a CHRStyle from a MSStyle
-   * @param {MSStyle} style
-   */
-  constructor(style) {
-    this.style = style
-  }
+/** Class representing a wrapper around MSStyle
+ * @class
+ *
+ * @constructor
+ *
+ * @property {MSStyle} style
+ */
+function CHRStyle(style) {
+  this.style = style
+  var that = this
 
   /**
    * Get style's colors
    * @return {Array.<MSColor>}
    */
-  getColors() {
+  this.getColors = function() {
     var colors = []
 
-    colors = colors.concat(this.getBorderColors())
-    colors = colors.concat(this.getFillColors())
+    colors = colors.concat(getBorderColors())
+    colors = colors.concat(getFillColors())
 
     return colors
   }
@@ -47,10 +48,10 @@ class CHRStyle {
    * Get style's border colors
    * @return {Array.<MSColor>}
    */
-  getBorderColors() {
+  var getBorderColors = function() {
     var colors = []
 
-    var borders = this.style.borders()
+    var borders = that.style.borders()
     for (var i = 0; i < borders.length; i++) {
       var border = borders[0]
       var borderColors = border.isEnabled() ? [border.color()] : []
@@ -64,10 +65,10 @@ class CHRStyle {
    * Get style's fill colors
    * @return {Array.<MSColor>}
    */
-  getFillColors() {
+  var getFillColors = function() {
     var colors = []
 
-    var fills = this.style.fills()
+    var fills = that.style.fills()
     for (var i = 0; i < fills.length; i++) {
       var fill = fills[i]
 
@@ -78,7 +79,7 @@ class CHRStyle {
           colors = colors.concat(fillColors)
           break
         case 1: // Gradient
-          var gradientColors = this.getGradientColors(fill.gradient())
+          var gradientColors = getGradientColors(fill.gradient())
           colors = colors.concat(gradientColors)
           break
         default:
@@ -94,9 +95,10 @@ class CHRStyle {
   /**
    * Get a gradient's colors
    * @param {MSGradient} gradient
+   *
    * @return {Array.<MSColor>}
    */
-  getGradientColors(gradient) {
+  var getGradientColors = function(gradient) {
     var colors = []
 
     var gradientStops = gradient.stops()
