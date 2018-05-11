@@ -68,7 +68,8 @@ class CHRLayer {
         return []
 
       default:
-        log("Error: Unknown layer class", layerClass)
+        var errorMessage = 'Warning. Unknown layer class: ' + layerClass
+        raiseWarningError(errorMessage)
         return []
       }
     }
