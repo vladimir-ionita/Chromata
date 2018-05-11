@@ -38,29 +38,30 @@ class CHRLayer {
 
   /**
    * Get the mappings for a layer
+   * @param {MSLayer} layer
    * @return {Array.<CHRLayerColorsMapping>}
    */
-  getLayerColorsMappingsForLayer() {
-    if (!this.layer.isVisible()) {
+  getLayerColorsMappingsForLayer(layer) {
+    if (!layer.isVisible()) {
       return []
     }
 
-    var layerClass = this.layer.class()
+    var layerClass = layer.class()
     switch (layerClass) {
       case MSArtboardGroup:
       case MSSymbolMaster:
       case MSLayerGroup:
-        return this.getLayerColorsMappingsForANestedLayer(this.layer)
+        return this.getLayerColorsMappingsForANestedLayer(layer)
 
       case MSTextLayer:
-        return [this.getLayerColorsMappingForALeafTextLayer(this.layer)]
+        return [this.getLayerColorsMappingForALeafTextLayer(layer)]
       case MSSliceLayer:
-        return [this.getLayerColorsMappingForALeafSliceLayer(this.layer)]
+        return [this.getLayerColorsMappingForALeafSliceLayer(layer)]
 
       case MSShapeGroup:
       case MSSymbolInstance:
       case MSBitmapLayer:
-        return [this.getLayerColorsMappingForALeafLayer(this.layer)]
+        return [this.getLayerColorsMappingForALeafLayer(layer)]
 
       case MSRectangleShape:
       case MSShapePathLayer:
@@ -85,7 +86,7 @@ class CHRLayer {
       var childrenLayers = nestedLayer.layers()
       for (var i = 0; i < childrenLayers.length; i++) {
         var layer = childrenLayers[i]
-        mappings = mappings.concat(new CHRLayer(layer).getLayerColorsMappingsForLayer())
+        mappings = mappings.concat(new CHRLayer().getLayerColorsMappingsForLayer(layer))
       }
 
       return mappings

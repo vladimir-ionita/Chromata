@@ -56,7 +56,7 @@ function getColorsFromLayers(layers) {
   for (var i = 0; i < layers.length; i++) {
     var layer = layers[i]
 
-    var layerMappings = new CHRLayer(layer).getLayerColorsMappingsForLayer()
+    var layerMappings = new CHRLayer().getLayerColorsMappingsForLayer(layer)
     for (var j = 0; j < layerMappings.length; j++) {
       var layerColors = layerMappings[j].colors
       colors = colors.concat(layerColors)

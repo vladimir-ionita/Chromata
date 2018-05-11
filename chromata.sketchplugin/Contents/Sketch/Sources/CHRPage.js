@@ -42,7 +42,7 @@ class CHRPage {
     var layers = this.page.layers()
     for (var i = 0; i < layers.length; i++) {
       var layer = layers[i]
-      mappings = mappings.concat(new CHRLayer(layer).getLayerColorsMappingsForLayer())
+      mappings = mappings.concat(new CHRLayer().getLayerColorsMappingsForLayer(layer))
     }
 
     return mappings
