@@ -20,28 +20,23 @@
 */
 
 
-@import 'Sources/Utilities/CHRErrorHandler.js'
-
 /** Class representing a wrapper around MSStyle
  * @class
- *
- * @constructor
- *
- * @property {MSStyle} style
  */
-function CHRStyle(style) {
-  this.style = style
-  var that = this
+var CHRStyle = (function() {
+  @import 'Sources/Utilities/CHRErrorHandler.js'
 
   /**
    * Get style's colors
+   * @param {MSStyle} style
+   *
    * @return {Array.<MSColor>}
    */
-  this.getColors = function() {
+  function getColors(style) {
     var colors = []
 
-    colors = colors.concat(getBordersColors(that.style.enabledBorders()))
-    colors = colors.concat(getFillsColors(that.style.enabledFills()))
+    colors = colors.concat(getBordersColors(style.enabledBorders()))
+    colors = colors.concat(getFillsColors(style.enabledFills()))
 
     return colors
   }
@@ -52,7 +47,7 @@ function CHRStyle(style) {
    *
    * @return {Array.<MSColor>}
    */
-  var getBordersColors = function(borders) {
+  function getBordersColors(borders) {
     var colors = []
 
     for (let i = 0; i < borders.length; i++) {
@@ -69,7 +64,7 @@ function CHRStyle(style) {
    *
    * @return {Array.<MSColor>}
    */
-  var getFillsColors = function(fills) {
+  function getFillsColors(fills) {
     var colors = []
 
     for (let i = 0; i < fills.length; i++) {
@@ -100,7 +95,7 @@ function CHRStyle(style) {
    *
    * @return {Array.<MSColor>}
    */
-  var getGradientColors = function(gradient) {
+  function getGradientColors(gradient) {
     var colors = []
 
     var gradientStops = gradient.stops()
@@ -110,4 +105,8 @@ function CHRStyle(style) {
 
     return colors
   }
-}
+
+  return {
+    getColors: getColors
+  }
+})()

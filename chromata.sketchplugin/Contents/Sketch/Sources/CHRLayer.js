@@ -136,7 +136,7 @@ class CHRLayer {
      * @return {CHRLayerColorsMapping}
      */
     getLayerColorsMappingForALeafLayer(layer) {
-      var layerColors = new CHRStyle(layer.style()).getColors()
+      var layerColors = CHRStyle.getColors(layer.style())
       return new CHRLayerColorsMapping(layer, layerColors)
     }
 }
