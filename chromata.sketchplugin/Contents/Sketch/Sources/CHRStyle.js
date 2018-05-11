@@ -102,8 +102,8 @@ function CHRStyle(style) {
     var colors = []
 
     var gradientStops = gradient.stops()
-    for (var i = 0; i < gradientStops; i++) {
-      colors = colors.concat(gradientStop.color())
+    for (let i = 0; i < gradientStops.length; i++) {
+      colors = colors.concat(gradientStops[i].color())
     }
 
     return colors
