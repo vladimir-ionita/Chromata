@@ -38,24 +38,24 @@ function CHRStyle(style) {
   this.getColors = function() {
     var colors = []
 
-    colors = colors.concat(getBorderColors())
+    colors = colors.concat(getBordersColors(that.style.enabledBorders()))
     colors = colors.concat(getFillsColors(that.style.enabledFills()))
 
     return colors
   }
 
   /**
-   * Get style's border colors
+   * Get borders colors
+   * @param {Array.<MSStyleBorder>} borders
+   *
    * @return {Array.<MSColor>}
    */
-  var getBorderColors = function() {
+  var getBordersColors = function(borders) {
     var colors = []
 
-    var borders = that.style.borders()
-    for (var i = 0; i < borders.length; i++) {
-      var border = borders[i]
-      var borderColors = border.isEnabled() ? [border.color()] : []
-      colors = colors.concat(borderColors)
+    for (let i = 0; i < borders.length; i++) {
+      var borderColor = borders[i].color()
+      colors.push(borderColor)
     }
 
     return colors
