@@ -20,6 +20,8 @@
 */
 
 
+@import 'Sources/Utilities/CHRErrorHandler.js'
+
 /** Class representing a wrapper around MSStyle
  * @class
  *
@@ -84,9 +86,8 @@ function CHRStyle(style) {
           colors = colors.concat(gradientColors)
           break
         default:
-          // TODO: Better error handling
-          alert("Error: Unknown fill type", fillType)
-          throw -1
+          var errorMessage = 'Warning. Unknown fill type: ' + fillType + '.'
+          raiseWarningError(errorMessage)
       }
     }
 
