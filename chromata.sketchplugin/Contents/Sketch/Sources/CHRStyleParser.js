@@ -22,7 +22,6 @@
 
 /**
  * Class representing a parser around MSStyle
- * @class
  */
 function CHRStyleParser() {}
 
@@ -33,6 +32,20 @@ function CHRStyleParser() {}
  */
 CHRStyleParser.getColors = (function() {
   @import 'Sources/Utilities/CHRErrorHandler.js'
+
+  /**
+   * Get style's colors
+   * @param {MSStyle} style
+   * @return {Array.<MSColor>}
+   */
+  function getColors(style) {
+    var colors = []
+
+    colors = colors.concat(getBordersColors(style.enabledBorders()))
+    colors = colors.concat(getFillsColors(style.enabledFills()))
+
+    return colors
+  }
 
   /**
    * Get borders colors
@@ -96,12 +109,5 @@ CHRStyleParser.getColors = (function() {
     return colors
   }
 
-  return function(style) {
-    var colors = []
-
-    colors = colors.concat(getBordersColors(style.enabledBorders()))
-    colors = colors.concat(getFillsColors(style.enabledFills()))
-
-    return colors
-  }
+  return getColors
 })()
