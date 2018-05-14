@@ -25,10 +25,10 @@
  * @param {string} errorMessage
  */
 function raiseWarningError(errorMessage) {
-  errorMessage = [errorMessage, 'Please raise an issue on github (https://github.com/abnamrocoesd/Chromata/issues/new).'].join(' ')
+    errorMessage = [errorMessage, 'Please raise an issue on github (https://github.com/abnamrocoesd/Chromata/issues/new).'].join(' ')
 
-  log(errorMessage)
-  globalContext.document.showMessage(errorMessage)
+    log(errorMessage)
+    globalContext.document.showMessage(errorMessage)
 }
 
 /**
@@ -36,6 +36,6 @@ function raiseWarningError(errorMessage) {
  * @param {string} errorMessage
  */
 function raiseCriticalError(errorMessage) {
-  raiseWarningError(errorMessage)
-  throw -1
+    raiseWarningError(errorMessage)
+    throw -1
 }
