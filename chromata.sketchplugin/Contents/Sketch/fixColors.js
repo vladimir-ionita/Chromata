@@ -24,22 +24,22 @@
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  globalContext = context
-  
-  var palette = CHRPalette.loadPalette()
-  if (palette.length == 0) {
-    context.document.showMessage('You have no colors in your palette.')
-    return
-  }
+    globalContext = context
 
-  var mappings = CHRDocumentParser.getLayerColorsMappingForDocument(context.document)
-  var rogueLayer = getNextRogueLayer(mappings, palette)
-  if (typeof rogueLayer != 'undefined') {
-    selectLayer(context, rogueLayer)
-    moveViewportFocusToLayer(context, rogueLayer)
-  } else {
-    context.document.showMessage("You're all set. Your colors match your palette!")
-  }
+    let palette = CHRPalette.loadPalette()
+    if (palette.length == 0) {
+        context.document.showMessage('You have no colors in your palette.')
+        return
+    }
+
+    let mappings = CHRDocumentParser.getLayerColorsMappingForDocument(context.document)
+    let rogueLayer = getNextRogueLayer(mappings, palette)
+    if (typeof rogueLayer != 'undefined') {
+        selectLayer(context, rogueLayer)
+        moveViewportFocusToLayer(context, rogueLayer)
+    } else {
+        context.document.showMessage("You're all set. Your colors match your palette!")
+    }
 }
 
 /**
@@ -49,7 +49,7 @@ var onRun = function(context) {
  * @return {Array.CHRLayerColorsMapping}
  */
 function getNonEmptyMappings(mappings) {
-  return mappings.filter(mapping => mapping.colors.length > 0)
+    return mappings.filter(mapping => mapping.colors.length > 0)
 }
 
 /**
@@ -60,16 +60,16 @@ function getNonEmptyMappings(mappings) {
  * @return {MSLayer}
  */
 function getNextRogueLayer(layerMappings, palette) {
-  for (var i = 0; i < layerMappings.length; i++) {
-    var mapping = layerMappings[i]
+    for (let i = 0; i < layerMappings.length; i++) {
+        let mapping = layerMappings[i]
 
-    var layerColors = mapping.colors
-    for (var j = 0; j < layerColors.length; j++) {
-      if (!isColorInPalette(layerColors[j], palette)) {
-        return mapping.layer
-      }
+        let layerColors = mapping.colors
+        for (let j = 0; j < layerColors.length; j++) {
+            if (!isColorInPalette(layerColors[j], palette)) {
+                return mapping.layer
+            }
+        }
     }
-  }
 }
 
 /**
@@ -79,15 +79,15 @@ function getNextRogueLayer(layerMappings, palette) {
  * @return {boolean}
  */
 function isColorInPalette(color, palette) {
-  var comparisionPrecision = 0.9/255
+    let comparisionPrecision = 0.9/255
 
-  for (var i = 0; i < palette.length; i++) {
-    if (color.fuzzyIsEqual_precision(palette[i], comparisionPrecision)) {
-      return true
+    for (let i = 0; i < palette.length; i++) {
+        if (color.fuzzyIsEqual_precision(palette[i], comparisionPrecision)) {
+            return true
+        }
     }
-  }
 
-  return false
+    return false
 }
 
 /**
@@ -96,9 +96,9 @@ function isColorInPalette(color, palette) {
  * @param {MSLayer} layer
  */
 function selectLayer(context, layer) {
-  context.document.setCurrentPage(layer.parentPage())
-  context.document.currentPage().changeSelectionBySelectingLayers([])
-  layer.select_byExpandingSelection(true, true)
+    context.document.setCurrentPage(layer.parentPage())
+    context.document.currentPage().changeSelectionBySelectingLayers([])
+    layer.select_byExpandingSelection(true, true)
 }
 
 
@@ -108,16 +108,16 @@ function selectLayer(context, layer) {
  * @param {MSLayer} layer
  */
 function moveViewportFocusToLayer(context, layer) {
-  var padding = 100
+    const padding = 100
 
-  var focusRect = NSMakeRect(
-    layer.absolutePosition().x - padding,
-    layer.absolutePosition().y - padding,
-    layer.frame().size().width + padding * 2,
-    layer.frame().size().height + padding * 2
-  )
+    let focusRect = NSMakeRect(
+        layer.absolutePosition().x - padding,
+        layer.absolutePosition().y - padding,
+        layer.frame().size().width + padding * 2,
+        layer.frame().size().height + padding * 2
+    )
 
-  context.document.currentContentViewController().contentDrawView().zoomToFitRect(focusRect)
+    context.document.currentContentViewController().contentDrawView().zoomToFitRect(focusRect)
 }
 
 
@@ -127,6 +127,6 @@ function moveViewportFocusToLayer(context, layer) {
  * @param {Array.<CHRLayerColorsMapping>} mappings
  */
 function debugInfo(palette, mappings) {
-  log("Palette: " + palette.length)
-  log("Colors: " + getNonEmptyMappings(mappings).length)
+    log("Palette: " + palette.length)
+    log("Colors: " + getNonEmptyMappings(mappings).length)
 }
