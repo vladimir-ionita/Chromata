@@ -22,7 +22,9 @@
 
 const pluginIdentifier = "com.vladimirionita.chromata"
 
-/** Class representing a wrapper around NSUserDefaults */
+/**
+ * Class representing a wrapper around NSUserDefaults
+ */
 function CHRUserDefaults() {}
 
 /**
@@ -31,9 +33,9 @@ function CHRUserDefaults() {}
  * @param {string} key
  */
 CHRUserDefaults.saveValueForKey = function(value, key) {
-  let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
-  userDefaults.setObject_forKey(value, key)
-  userDefaults.synchronize()
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+    userDefaults.setObject_forKey(value, key)
+    userDefaults.synchronize()
 }
 
 /**
@@ -42,6 +44,6 @@ CHRUserDefaults.saveValueForKey = function(value, key) {
  * @return {T|null}
  */
 CHRUserDefaults.fetchValueForKey = function(key) {
-  let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
-  return userDefaults.valueForKey(key)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+    return userDefaults.valueForKey(key)
 }
