@@ -30,7 +30,7 @@ function CHRPalette() { }
  * @param {Array.<MSColor>} palette
  */
 CHRPalette.savePalette = function(palette) {
-    var paletteRgba = palette.map(color => {
+    let paletteRgba = palette.map(color => {
         return color.RGBADictionary()
     })
 
@@ -44,10 +44,10 @@ CHRPalette.savePalette = function(palette) {
  * @return {Array.<MSColor>}
  */
 CHRPalette.loadPalette = function() {
-    var rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
+    let rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
 
-    var palette = []
-    for (var i = 0; i < rawPaletteRgba.length; i++) {
+    let palette = []
+    for (let i = 0; i < rawPaletteRgba.length; i++) {
         palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgba[i]))
     }
 
