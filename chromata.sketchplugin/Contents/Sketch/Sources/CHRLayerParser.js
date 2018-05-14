@@ -74,8 +74,6 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
                 raiseWarningError(errorMessage)
                 return []
         }
-
-        return []
     }
 
     /**
