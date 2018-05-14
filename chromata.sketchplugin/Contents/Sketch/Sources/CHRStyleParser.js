@@ -39,7 +39,7 @@ CHRStyleParser.getColors = (function() {
      * @return {Array.<MSColor>}
      */
     function getColors(style) {
-        var colors = []
+        let colors = []
 
         colors = colors.concat(getBordersColors(style.enabledBorders()))
         colors = colors.concat(getFillsColors(style.enabledFills()))
@@ -53,10 +53,10 @@ CHRStyleParser.getColors = (function() {
      * @return {Array.<MSColor>}
      */
     function getBordersColors(borders) {
-        var colors = []
+        let colors = []
 
         for (let i = 0; i < borders.length; i++) {
-            var borderColor = borders[i].color()
+            let borderColor = borders[i].color()
             colors.push(borderColor)
         }
 
@@ -69,23 +69,23 @@ CHRStyleParser.getColors = (function() {
      * @return {Array.<MSColor>}
      */
     function getFillsColors(fills) {
-        var colors = []
+        let colors = []
 
         for (let i = 0; i < fills.length; i++) {
-            var fill = fills[i]
+            let fill = fills[i]
 
-            var fillType = fill.fillType()
+            let fillType = fill.fillType()
             switch(fillType) {
                 case 0: // Solid Color
-                    var fillColor = fill.color()
+                    let fillColor = fill.color()
                     colors.push(fillColor)
                     break
                 case 1: // Gradient
-                    var gradientColors = getGradientColors(fill.gradient())
+                    let gradientColors = getGradientColors(fill.gradient())
                     colors = colors.concat(gradientColors)
                     break
                 default:
-                    var errorMessage = 'Warning. Unknown fill type: ' + fillType + '.'
+                    let errorMessage = 'Warning. Unknown fill type: ' + fillType + '.'
                     raiseWarningError(errorMessage)
             }
         }
@@ -99,9 +99,9 @@ CHRStyleParser.getColors = (function() {
      * @return {Array.<MSColor>}
      */
     function getGradientColors(gradient) {
-        var colors = []
+        let colors = []
 
-        var gradientStops = gradient.stops()
+        let gradientStops = gradient.stops()
         for (let i = 0; i < gradientStops.length; i++) {
             colors = colors.concat(gradientStops[i].color())
         }
