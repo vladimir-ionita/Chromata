@@ -6,6 +6,7 @@
   "authorEmail": "ionita.vladimir@gmail.com",
   "author": "Vladimir Ionita",
   "icon": "icon.png",
+  "compatibleVersion": "50",
   "appcast": "https://github.com/abnamrocoesd/Chromata/blob/master/.appcast.xml",
   "commands": [
     {
