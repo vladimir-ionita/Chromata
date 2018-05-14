@@ -20,27 +20,29 @@
 */
 
 
-@import 'Sources/CHRLayer.js'
+@import 'Parser/CHRLayerParser.js'
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  var selectedLayers = context.selection
-  if (selectedLayers.length == 0) {
-    var message = "You haven't selected any layers."
-    context.document.showMessage(message)
+    globalContext = context
 
-    return
-  }
+    let selectedLayers = context.selection
+    if (selectedLayers.length == 0) {
+        let message = "You haven't selected any layers."
+        context.document.showMessage(message)
 
-  var palette = getColorsFromLayers(selectedLayers)
-  if (palette.length > 0) {
-    CHRPalette.savePalette(palette)
-    var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
-    context.document.showMessage(message)
-  } else {
-    var message = "Palette saved. No colors."
-    context.document.showMessage(message)
-  }
+        return
+    }
+
+    let palette = getColorsFromLayers(selectedLayers)
+    if (palette.length > 0) {
+        CHRPalette.savePalette(palette)
+        let message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
+        context.document.showMessage(message)
+    } else {
+        let message = "Palette saved. No colors."
+        context.document.showMessage(message)
+    }
 }
 
 /**
@@ -49,17 +51,17 @@ var onRun = function(context) {
  * @return {Array.<CHRLayerColorsMapping>}
  */
 function getColorsFromLayers(layers) {
-  var colors = []
+    let colors = []
 
-  for (var i = 0; i < layers.length; i++) {
-    var layer = layers[i]
+    for (let i = 0; i < layers.length; i++) {
+        let layer = layers[i]
 
-    var layerMappings = new CHRLayer(layer).getLayerColorsMappingsForLayer()
-    for (var j = 0; j < layerMappings.length; j++) {
-      var layerColors = layerMappings[j].colors
-      colors = colors.concat(layerColors)
+        let layerMappings = CHRLayerParser.getLayerColorsMappingsForLayer(layer)
+        for (let j = 0; j < layerMappings.length; j++) {
+            let layerColors = layerMappings[j].colors
+            colors = colors.concat(layerColors)
+        }
     }
-  }
 
-  return colors
+    return colors
 }

@@ -20,36 +20,26 @@
 */
 
 
-@import 'Storage/CHRUserDefaults.js'
-
-/** Class representing a palette */
-function CHRPalette() { }
+@import 'Parser/CHRPageParser.js'
 
 /**
- * Save the palette in user defaults
- * @param {Array.<MSColor>} palette
+ * Class representing a parser around MSDocument
  */
-CHRPalette.savePalette = function(palette) {
-    let paletteRgba = palette.map(color => {
-        return color.RGBADictionary()
-    })
-
-    CHRUserDefaults.saveValueForKey(paletteRgba, 'palette')
-}
+function CHRDocumentParser() {}
 
 /**
- * Load the pallete from user defaults
- * Notes: Couldn't use the map function over the array. For some
- *  unknown reasons, it crashes Sketch
- * @return {Array.<MSColor>}
+ * Get the mappings between a document's layers and their colors
+ * @param {MSDocument} document
+ * @return {Array.<CHRLayerColorsMapping>}
  */
-CHRPalette.loadPalette = function() {
-    let rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
+CHRDocumentParser.getLayerColorsMappingsForDocument = function(document) {
+    let mappings = []
 
-    let palette = []
-    for (let i = 0; i < rawPaletteRgba.length; i++) {
-        palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgba[i]))
+    let pages = document.pages()
+    for (let i = 0; i < pages.length; i++) {
+        let page = pages[i]
+        mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
     }
 
-    return palette
+    return mappings
 }
