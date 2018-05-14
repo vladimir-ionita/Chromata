@@ -108,7 +108,7 @@ function selectLayer(context, layer) {
  * @param {MSLayer} layer
  */
 function moveViewportFocusToLayer(context, layer) {
-    let padding = 100
+    const padding = 100
 
     let focusRect = NSMakeRect(
         layer.absolutePosition().x - padding,
