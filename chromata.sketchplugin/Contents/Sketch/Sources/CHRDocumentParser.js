@@ -23,9 +23,9 @@
 @import 'Sources/CHRPageParser.js'
 
 /** Class representing a wrapper around MSDocument */
-class CHRDocument {
+class CHRDocumentParser {
     /**
-     * Create a CHRDocument from a MSDocument
+     * Create a CHRDocumentParser from a MSDocument
      * @param {MSDocument} document
      */
     constructor(document) {

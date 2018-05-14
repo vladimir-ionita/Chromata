@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRDocument.js'
+@import 'Sources/CHRDocumentParser.js'
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
@@ -32,7 +32,7 @@ var onRun = function(context) {
     return
   }
 
-  var mappings = new CHRDocument(context.document).getLayerColorsMappingForDocument()
+  var mappings = new CHRDocumentParser(context.document).getLayerColorsMappingForDocument()
   var rogueLayer = getNextRogueLayer(mappings, palette)
   if (typeof rogueLayer != 'undefined') {
     selectLayer(context, rogueLayer)
