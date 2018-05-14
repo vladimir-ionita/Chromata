@@ -26,14 +26,14 @@
 var onRun = function(context) {
     globalContext = context
 
-    var palette = CHRPalette.loadPalette()
+    let palette = CHRPalette.loadPalette()
     if (palette.length == 0) {
         context.document.showMessage('You have no colors in your palette.')
         return
     }
 
-    var mappings = CHRDocumentParser.getLayerColorsMappingForDocument(context.document)
-    var rogueLayer = getNextRogueLayer(mappings, palette)
+    let mappings = CHRDocumentParser.getLayerColorsMappingForDocument(context.document)
+    let rogueLayer = getNextRogueLayer(mappings, palette)
     if (typeof rogueLayer != 'undefined') {
         selectLayer(context, rogueLayer)
         moveViewportFocusToLayer(context, rogueLayer)
@@ -60,11 +60,11 @@ function getNonEmptyMappings(mappings) {
  * @return {MSLayer}
  */
 function getNextRogueLayer(layerMappings, palette) {
-    for (var i = 0; i < layerMappings.length; i++) {
-        var mapping = layerMappings[i]
+    for (let i = 0; i < layerMappings.length; i++) {
+        let mapping = layerMappings[i]
 
-        var layerColors = mapping.colors
-        for (var j = 0; j < layerColors.length; j++) {
+        let layerColors = mapping.colors
+        for (let j = 0; j < layerColors.length; j++) {
             if (!isColorInPalette(layerColors[j], palette)) {
                 return mapping.layer
             }
@@ -79,9 +79,9 @@ function getNextRogueLayer(layerMappings, palette) {
  * @return {boolean}
  */
 function isColorInPalette(color, palette) {
-    var comparisionPrecision = 0.9/255
+    let comparisionPrecision = 0.9/255
 
-    for (var i = 0; i < palette.length; i++) {
+    for (let i = 0; i < palette.length; i++) {
         if (color.fuzzyIsEqual_precision(palette[i], comparisionPrecision)) {
             return true
         }
@@ -108,9 +108,9 @@ function selectLayer(context, layer) {
  * @param {MSLayer} layer
  */
 function moveViewportFocusToLayer(context, layer) {
-    var padding = 100
+    let padding = 100
 
-    var focusRect = NSMakeRect(
+    let focusRect = NSMakeRect(
         layer.absolutePosition().x - padding,
         layer.absolutePosition().y - padding,
         layer.frame().size().width + padding * 2,
