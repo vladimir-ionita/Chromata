@@ -22,29 +22,24 @@
 
 @import 'Sources/CHRPageParser.js'
 
-/** Class representing a wrapper around MSDocument */
-class CHRDocument {
-  /**
-   * Create a CHRDocument from a MSDocument
-   * @param {MSDocument} document
-   */
-  constructor(document) {
-    this.document = document
-  }
+/**
+ * Class representing a parser around MSDocument
+ */
+function CHRDocumentParser() {}
 
-  /**
-   * Get the mappings between a page's layers and their colors
-   * @return {Array.<CHRLayerColorsMapping>}
-   */
-  getLayerColorsMappingForDocument() {
-    var mappings = []
+/**
+ * Get the mappings between a document's layers and their colors
+ * @param {MSDocument} document
+ * @return {Array.<CHRLayerColorsMapping>}
+ */
+CHRDocumentParser.getLayerColorsMappingsForDocument = function(document) {
+    let mappings = []
 
-    var pages = this.document.pages()
-    for (var i = 0; i < pages.length; i++) {
-      var page = pages[i]
-      mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
+    let pages = document.pages()
+    for (let i = 0; i < pages.length; i++) {
+        let page = pages[i]
+        mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
     }
 
     return mappings
-  }
 }
