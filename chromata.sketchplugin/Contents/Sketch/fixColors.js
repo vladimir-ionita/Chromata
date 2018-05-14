@@ -32,7 +32,7 @@ var onRun = function(context) {
     return
   }
 
-  var mappings = new CHRDocumentParser(context.document).getLayerColorsMappingForDocument()
+  var mappings = CHRDocumentParser.getLayerColorsMappingForDocument(context.document)
   var rogueLayer = getNextRogueLayer(mappings, palette)
   if (typeof rogueLayer != 'undefined') {
     selectLayer(context, rogueLayer)
