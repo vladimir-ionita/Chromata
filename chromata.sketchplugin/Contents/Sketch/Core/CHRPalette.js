@@ -30,11 +30,11 @@ function CHRPalette() { }
  * @param {Array.<MSColor>} palette
  */
 CHRPalette.savePalette = function(palette) {
-  var paletteRgba = palette.map(color => {
-    return color.RGBADictionary()
-  })
+    var paletteRgba = palette.map(color => {
+        return color.RGBADictionary()
+    })
 
-  CHRUserDefaults.saveValueForKey(paletteRgba, 'palette')
+    CHRUserDefaults.saveValueForKey(paletteRgba, 'palette')
 }
 
 /**
@@ -44,12 +44,12 @@ CHRPalette.savePalette = function(palette) {
  * @return {Array.<MSColor>}
  */
 CHRPalette.loadPalette = function() {
-  var rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
+    var rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
 
-  var palette = []
-  for (var i = 0; i < rawPaletteRgba.length; i++) {
-    palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgba[i]))
-  }
+    var palette = []
+    for (var i = 0; i < rawPaletteRgba.length; i++) {
+        palette.push(MSColor.colorWithRGBADictionary(rawPaletteRgba[i]))
+    }
 
-  return palette
+    return palette
 }
