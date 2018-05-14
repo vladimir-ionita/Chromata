@@ -26,14 +26,23 @@
 @import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
 @import 'Sources/Utilities/CHRErrorHandler.js'
 
-/** Class representing a wrapper around MSLayer */
-class CHRLayerParser {
+/**
+ * Class representing a parser around MSLayer
+ */
+function CHRLayerParser() {}
+
+/**
+ * Get the mappings for a layer
+ * @param {MSLayer} layer
+ * @return {Array.<CHRLayerColorsMapping>}
+ */
+CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
   /**
    * Get the mappings for a layer
    * @param {MSLayer} layer
    * @return {Array.<CHRLayerColorsMapping>}
    */
-  getLayerColorsMappingsForLayer(layer) {
+  function getLayerColorsMappingsForLayer(layer) {
     if (!layer.isVisible()) {
       return []
     }
@@ -43,17 +52,17 @@ class CHRLayerParser {
       case MSArtboardGroup:
       case MSSymbolMaster:
       case MSLayerGroup:
-        return this.getLayerColorsMappingsForANestedLayer(layer)
+        return getLayersColorsMappingsForANestedLayer(layer)
 
       case MSTextLayer:
-        return [this.getLayerColorsMappingForALeafTextLayer(layer)]
+        return [(getLayerColorsMappingForALeafTextLayer(layer))]
       case MSSliceLayer:
-        return [this.getLayerColorsMappingForALeafSliceLayer(layer)]
+        return [(getLayerColorsMappingForALeafSliceLayer(layer))]
 
       case MSShapeGroup:
       case MSSymbolInstance:
       case MSBitmapLayer:
-        return [this.getLayerColorsMappingForALeafLayer(layer)]
+        return [(getLayerColorsMappingForALeafLayer(layer))]
 
       case MSRectangleShape:
       case MSShapePathLayer:
@@ -65,74 +74,78 @@ class CHRLayerParser {
         raiseWarningError(errorMessage)
         return []
       }
+
+      return []
+   }
+
+  /**
+   * Get the mappings for a nested layer
+   * @param {MSArtboardGroup|MSLayerGroup|MSSymbolMaster} nestedLayer
+   * @return {Array.<CHRLayerColorsMapping>}
+   */
+  function getLayersColorsMappingsForANestedLayer(nestedLayer) {
+    var mappings = [(getLayerColorsMappingForALeafLayer(nestedLayer))]
+
+    var childrenLayers = nestedLayer.layers()
+    for (let i = 0; i < childrenLayers.length; i++) {
+      var layer = childrenLayers[i]
+      mappings = mappings.concat(CHRLayerParser.getLayerColorsMappingsForLayer(layer))
     }
 
-    /**
-     * Get the mappings for a nested layer
-     * @param {MSArtboardGroup|MSLayerGroup|MSSymbolMaster} nestedLayer
-     * @return {Array.<CHRLayerColorsMapping>}
-     */
-    getLayerColorsMappingsForANestedLayer(nestedLayer) {
-      var mappings = [this.getLayerColorsMappingForALeafLayer(nestedLayer)]
+    return mappings
+  }
 
-      var childrenLayers = nestedLayer.layers()
-      for (var i = 0; i < childrenLayers.length; i++) {
-        var layer = childrenLayers[i]
-        mappings = mappings.concat(new CHRLayerParser().getLayerColorsMappingsForLayer(layer))
+  /**
+   * Get the mapping of a text layer and its colors
+   * A text layer is also a leaf layer, it has no children layers
+   * @param {MSTextLayer} textLayer
+   * @return {CHRLayerColorsMapping}
+   */
+  function getLayerColorsMappingForALeafTextLayer(textLayer) {
+    var layerColors = getLayerColorsMappingForALeafLayer(textLayer).colors
+
+    var textAttributes = textLayer.attributedStringValue().treeAsDictionary().attributes
+    for (let i = 0; i < textAttributes.length; i++) {
+      var attribute = textAttributes[i]
+      if (attribute.MSAttributedStringColorAttribute == undefined) {
+        continue
       }
 
-      return mappings
-    }
-
-    /**
-     * Get the mapping of a text layer and its colors
-     * A text layer is also a leaf layer, it has no children layers
-     * @param {MSTextLayer} textLayer
-     * @return {CHRLayerColorsMapping}
-     */
-    getLayerColorsMappingForALeafTextLayer(textLayer) {
-      var layerColors = this.getLayerColorsMappingForALeafLayer(textLayer).colors
-
-      var textAttributes = textLayer.attributedStringValue().treeAsDictionary().attributes
-      for (var i = 0; i < textAttributes.length; i++) {
-        var attribute = textAttributes[i]
-        if (attribute.MSAttributedStringColorAttribute == undefined) {
-          continue
-        }
-
-        var colorString = attribute.MSAttributedStringColorAttribute.value
-        if (isHexRepresentationOfAColor(colorString)) {
-          layerColors.push(CHRMSColorFactory.createFromHexRepresentation(colorString))
-        } else if (isRgbaDescriptionOfAColor(colorString)) {
-          layerColors.push(CHRMSColorFactory.createFromRgbaDescription(colorString))
-        } else {
-          var errorMessage = "Warning: 'getLayerColorsMappingForALeafTextLayer' found a color that is not a hex description and nor a rgba description"
-          raiseWarningError(errorMessage)
-        }
+      var colorString = attribute.MSAttributedStringColorAttribute.value
+      if (isHexRepresentationOfAColor(colorString)) {
+        layerColors.push(CHRMSColorFactory.createFromHexRepresentation(colorString))
+      } else if (isRgbaDescriptionOfAColor(colorString)) {
+        layerColors.push(CHRMSColorFactory.createFromRgbaDescription(colorString))
+      } else {
+        var errorMessage = "Warning: 'getLayerColorsMappingForALeafTextLayer' found a color that is not a hex description and nor a rgba description"
+        raiseWarningError(errorMessage)
       }
-
-      return new CHRLayerColorsMapping(textLayer, layerColors)
     }
 
-    /**
-     * Get the mapping of a slice layer and its colors
-     * A slice layer is also a leaf layer, it has no children layers
-     * @param {MSSliceLayer} sliceLayer
-     * @return {CHRLayerColorsMapping}
-     */
-    getLayerColorsMappingForALeafSliceLayer(sliceLayer) {
-      var layerColors = sliceLayer.hasBackgroundColor() ? [sliceLayer.backgroundColor()] : []
-      return new CHRLayerColorsMapping(sliceLayer, layerColors)
-    }
+    return new CHRLayerColorsMapping(textLayer, layerColors)
+  }
 
-    /**
-     * Get the mapping of a leaf layer and its colors
-     * A leaf layer is a layer that has no children layers
-     * @param {MSLayer} layer
-     * @return {CHRLayerColorsMapping}
-     */
-    getLayerColorsMappingForALeafLayer(layer) {
-      var layerColors = CHRStyleParser.getColors(layer.style())
-      return new CHRLayerColorsMapping(layer, layerColors)
-    }
-}
+  /**
+   * Get the mapping of a slice layer and its colors
+   * A slice layer is also a leaf layer, it has no children layers
+   * @param {MSSliceLayer} sliceLayer
+   * @return {CHRLayerColorsMapping}
+   */
+  function getLayerColorsMappingForALeafSliceLayer(sliceLayer) {
+    var layerColors = sliceLayer.hasBackgroundColor() ? [sliceLayer.backgroundColor()] : []
+    return new CHRLayerColorsMapping(sliceLayer, layerColors)
+  }
+
+  /**
+   * Get the mapping of a leaf layer and its colors
+   * A leaf layer is a layer that has no children layers
+   * @param {MSLayer} layer
+   * @return {CHRLayerColorsMapping}
+   */
+  function getLayerColorsMappingForALeafLayer(layer) {
+    var layerColors = CHRStyleParser.getColors(layer.style())
+    return new CHRLayerColorsMapping(layer, layerColors)
+  }
+
+  return getLayerColorsMappingsForLayer
+})()
