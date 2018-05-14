@@ -3,9 +3,9 @@
 # Chromata
 
 ### A sketch plugin to find and fix layers that have colors outside of your palette.
-[![Version](https://img.shields.io/badge/Version-0.3.6-green.svg)]()
-[![Compatible Sketch Version](https://img.shields.io/badge/Sketch-49.3-green.svg)]()
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Download from Sketchpacks.com](https://badges.sketchpacks.com/plugins/vladimirionita.chromata/version.svg)](https://api.sketchpacks.com/v1/plugins/vladimirionita.chromata/download)
+[![Compatible Sketch Version](https://badges.sketchpacks.com/plugins/vladimirionita.chromata/compatibility.svg)](https://sketchpacks.com/abnamrocoesd/Chromata)
+[![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 </div>
 <br></br>
@@ -15,6 +15,8 @@
 **Dunya:** So how do I install it?
 
 **Vladimir:** Just double click on the sketchplugin file ;)
+
+[![Install Chromata with Sketchpacks](http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Chromata with Sketchpacks")](https://sketchpacks.com/abnamrocoesd/Chromata/install)
 
 ## Usage
 
@@ -30,6 +32,6 @@ After, you can press `⌘ + ⇧ + F` and the plugin will select the next deviate
 This palette will be used when checking every layer's colors. If a layer doesn't correspond to the palette, it will be a 'deviated layer'.
 Every time you want to reset the palette, reselect the layers and use the same shortcut to register a new one.
 
-## Sneak peak
+## Roadmap
 
 <li>v0.4.x - Navigation through rogue layers</li>

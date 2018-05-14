@@ -154,35 +154,6 @@ end
 
 ################################################################################
 
-class ReadmeFileVersionBumper
-  def initialize(file_path)
-    @file_path = file_path
-  end
-
-  def bump(version)
-    version_url_regexp = /https:(.*).svg/
-    bumped_version_url = 'https://img.shields.io/badge/Version-%s-green.svg' % [version]
-
-    text = get_text_content
-    text = text.sub(version_url_regexp, bumped_version_url)
-    write_text(text)
-  end
-
-  private
-  def get_text_content
-    return File.read(@file_path)
-  end
-
-  private
-  def write_text(text)
-    File.open(@file_path, 'w') do |file|
-      file.puts text
-    end
-  end
-end
-
-################################################################################
-
 class ScriptOptions
   attr_accessor :bump_version, :release, :changelog
 
@@ -283,10 +254,6 @@ else
   manifest_file_path = FileHelper.absolute_file_path('chromata.sketchplugin/Contents/Sketch/manifest.json')
   ManifestFileVersionBumper.new(manifest_file_path).bump(options.bump_version)
   puts "  Manifest version bump.. Done" #check if true first
-
-  readme_file_path = FileHelper.absolute_file_path('README.md')
-  ReadmeFileVersionBumper.new(readme_file_path).bump(options.bump_version)
-  puts "  Readme version bump.. Done" #check if true first
 end
 
 if options.release == true
