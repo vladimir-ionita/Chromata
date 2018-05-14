@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRPage.js'
+@import 'Sources/CHRPageParser.js'
 
 /** Class representing a wrapper around MSDocument */
 class CHRDocument {
@@ -42,7 +42,7 @@ class CHRDocument {
     var pages = this.document.pages()
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i]
-      mappings = mappings.concat(new CHRPage(page).getLayerColorsMappingsForPage())
+      mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
     }
 
     return mappings

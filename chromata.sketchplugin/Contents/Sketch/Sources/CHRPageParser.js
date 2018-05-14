@@ -22,29 +22,24 @@
 
 @import 'Sources/CHRLayerParser.js'
 
-/** Class representing a wrapper around MSPage */
-class CHRPage {
-  /**
-   * Create a CHRPage from a MSPage
-   * @param {MSPage} page
-   */
-  constructor(page) {
-    this.page = page
-  }
+/**
+ * Class representing a parser around MSPage
+ */
+function CHRPageParser() {}
 
-  /**
-   * Get the mappings between a page's layers and their colors
-   * @return {Array.<CHRLayerColorsMapping>}
-   */
-  getLayerColorsMappingsForPage() {
-    var mappings = []
+/**
+ * Get the mappings between a page's layers and their colors
+ * @param {MSPage} page
+ * @return {Array.<CHRLayerColorsMapping>}
+ */
+CHRPageParser.getLayerColorsMappingsForPage = function(page) {
+    let mappings = []
 
-    var layers = this.page.layers()
-    for (var i = 0; i < layers.length; i++) {
-      var layer = layers[i]
-      mappings = mappings.concat(CHRLayerParser.getLayerColorsMappingsForLayer(layer))
+    let layers = page.layers()
+    for (let i = 0; i < layers.length; i++) {
+        let layer = layers[i]
+        mappings = mappings.concat(CHRLayerParser.getLayerColorsMappingsForLayer(layer))
     }
 
     return mappings
-  }
 }
