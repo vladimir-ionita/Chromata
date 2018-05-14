@@ -31,7 +31,7 @@ function CHRUserDefaults() {}
  * @param {string} key
  */
 CHRUserDefaults.saveValueForKey = function(value, key) {
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+  let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
   userDefaults.setObject_forKey(value, key)
   userDefaults.synchronize()
 }
@@ -42,6 +42,6 @@ CHRUserDefaults.saveValueForKey = function(value, key) {
  * @return {T|null}
  */
 CHRUserDefaults.fetchValueForKey = function(key) {
-  var userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+  let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
   return userDefaults.valueForKey(key)
 }
