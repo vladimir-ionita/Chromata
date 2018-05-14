@@ -20,6 +20,8 @@
 */
 
 
+@import 'Sources/Utilities/CHRErrorHandler.js'
+
 /**
  * Class representing a parser around MSStyle
  */
@@ -31,83 +33,81 @@ function CHRStyleParser() {}
  * @return {Array.<MSColor>}
  */
 CHRStyleParser.getColors = (function() {
-  @import 'Sources/Utilities/CHRErrorHandler.js'
+    /**
+     * Get style's colors
+     * @param {MSStyle} style
+     * @return {Array.<MSColor>}
+     */
+    function getColors(style) {
+        let colors = []
 
-  /**
-   * Get style's colors
-   * @param {MSStyle} style
-   * @return {Array.<MSColor>}
-   */
-  function getColors(style) {
-    var colors = []
+        colors = colors.concat(getBordersColors(style.enabledBorders()))
+        colors = colors.concat(getFillsColors(style.enabledFills()))
 
-    colors = colors.concat(getBordersColors(style.enabledBorders()))
-    colors = colors.concat(getFillsColors(style.enabledFills()))
-
-    return colors
-  }
-
-  /**
-   * Get borders colors
-   * @param {Array.<MSStyleBorder>} borders
-   * @return {Array.<MSColor>}
-   */
-  function getBordersColors(borders) {
-    var colors = []
-
-    for (let i = 0; i < borders.length; i++) {
-      var borderColor = borders[i].color()
-      colors.push(borderColor)
+        return colors
     }
 
-    return colors
-  }
+    /**
+     * Get borders colors
+     * @param {Array.<MSStyleBorder>} borders
+     * @return {Array.<MSColor>}
+     */
+    function getBordersColors(borders) {
+        let colors = []
 
-  /**
-   * Get fills colors
-   * @param {Array.<MSStyleFill>} fills
-   * @return {Array.<MSColor>}
-   */
-  function getFillsColors(fills) {
-    var colors = []
+        for (let i = 0; i < borders.length; i++) {
+            let borderColor = borders[i].color()
+            colors.push(borderColor)
+        }
 
-    for (let i = 0; i < fills.length; i++) {
-      var fill = fills[i]
-
-      var fillType = fill.fillType()
-      switch(fillType) {
-        case 0: // Solid Color
-          var fillColor = fill.color()
-          colors.push(fillColor)
-          break
-        case 1: // Gradient
-          var gradientColors = getGradientColors(fill.gradient())
-          colors = colors.concat(gradientColors)
-          break
-        default:
-          var errorMessage = 'Warning. Unknown fill type: ' + fillType + '.'
-          raiseWarningError(errorMessage)
-      }
+        return colors
     }
 
-    return colors
-  }
+    /**
+     * Get fills colors
+     * @param {Array.<MSStyleFill>} fills
+     * @return {Array.<MSColor>}
+     */
+    function getFillsColors(fills) {
+        let colors = []
 
-  /**
-   * Get a gradient's colors
-   * @param {MSGradient} gradient
-   * @return {Array.<MSColor>}
-   */
-  function getGradientColors(gradient) {
-    var colors = []
+        for (let i = 0; i < fills.length; i++) {
+            let fill = fills[i]
 
-    var gradientStops = gradient.stops()
-    for (let i = 0; i < gradientStops.length; i++) {
-      colors = colors.concat(gradientStops[i].color())
+            let fillType = fill.fillType()
+            switch(fillType) {
+                case 0: // Solid Color
+                    let fillColor = fill.color()
+                    colors.push(fillColor)
+                    break
+                case 1: // Gradient
+                    let gradientColors = getGradientColors(fill.gradient())
+                    colors = colors.concat(gradientColors)
+                    break
+                default:
+                    let errorMessage = 'Warning. Unknown fill type: ' + fillType + '.'
+                    raiseWarningError(errorMessage)
+            }
+        }
+
+        return colors
     }
 
-    return colors
-  }
+    /**
+     * Get a gradient's colors
+     * @param {MSGradient} gradient
+     * @return {Array.<MSColor>}
+     */
+    function getGradientColors(gradient) {
+        let colors = []
 
-  return getColors
+        let gradientStops = gradient.stops()
+        for (let i = 0; i < gradientStops.length; i++) {
+            colors = colors.concat(gradientStops[i].color())
+        }
+
+        return colors
+    }
+
+    return getColors
 })()
