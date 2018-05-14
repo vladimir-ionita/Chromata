@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRLayerParser.js'
+@import 'Parser/CHRLayerParser.js'
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {

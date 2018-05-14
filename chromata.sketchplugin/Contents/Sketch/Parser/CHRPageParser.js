@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRLayerParser.js'
+@import 'Parser/CHRLayerParser.js'
 
 /**
  * Class representing a parser around MSPage

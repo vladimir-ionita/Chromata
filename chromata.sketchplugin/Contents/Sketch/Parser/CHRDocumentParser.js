@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRPageParser.js'
+@import 'Parser/CHRPageParser.js'
 
 /**
  * Class representing a parser around MSDocument

@@ -20,8 +20,8 @@
 */
 
 
-@import 'Sources/Utilities/Colors/CHRColorRgbRepresentation.js'
-@import 'Sources/Utilities/Colors/CHRColorRgbaRepresentation.js'
+@import 'Parser/Utilities/Colors/CHRColorRgbRepresentation.js'
+@import 'Parser/Utilities/Colors/CHRColorRgbaRepresentation.js'
 
 /** Class representing a MSColor factory*/
 function CHRMSColorFactory() {}

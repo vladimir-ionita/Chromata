@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/CHRDocumentParser.js'
+@import 'Parser/CHRDocumentParser.js'
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {

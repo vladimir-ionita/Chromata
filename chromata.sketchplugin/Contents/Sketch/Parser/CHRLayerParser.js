@@ -20,10 +20,10 @@
 */
 
 
-@import 'Sources/CHRStyleParser.js'
-@import 'Sources/CHRLayerColorsMapping.js'
-@import 'Sources/Utilities/Colors/CHRColorsHelper.js'
-@import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
+@import 'Parser/CHRStyleParser.js'
+@import 'Parser/CHRLayerColorsMapping.js'
+@import 'Parser/Utilities/Colors/CHRColorsHelper.js'
+@import 'Parser/Utilities/Colors/CHRMSColorFactory.js'
 @import 'Core/CHRErrorHandler.js'
 
 /**
