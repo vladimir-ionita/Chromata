@@ -47,7 +47,7 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
             return []
         }
 
-        var layerClass = layer.class()
+        let layerClass = layer.class()
         switch (layerClass) {
             case MSArtboardGroup:
             case MSSymbolMaster:
@@ -70,7 +70,7 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
                 return []
 
             default:
-                var errorMessage = 'Warning. Unknown layer class: ' + layerClass
+                let errorMessage = 'Warning. Unknown layer class: ' + layerClass
                 raiseWarningError(errorMessage)
                 return []
         }
@@ -84,11 +84,11 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
      * @return {Array.<CHRLayerColorsMapping>}
      */
     function getLayersColorsMappingsForANestedLayer(nestedLayer) {
-        var mappings = [(getLayerColorsMappingForALeafLayer(nestedLayer))]
+        let mappings = [(getLayerColorsMappingForALeafLayer(nestedLayer))]
 
-        var childrenLayers = nestedLayer.layers()
+        let childrenLayers = nestedLayer.layers()
         for (let i = 0; i < childrenLayers.length; i++) {
-            var layer = childrenLayers[i]
+            let layer = childrenLayers[i]
             mappings = mappings.concat(CHRLayerParser.getLayerColorsMappingsForLayer(layer))
         }
 
@@ -102,22 +102,22 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
      * @return {CHRLayerColorsMapping}
      */
     function getLayerColorsMappingForALeafTextLayer(textLayer) {
-        var layerColors = getLayerColorsMappingForALeafLayer(textLayer).colors
+        let layerColors = getLayerColorsMappingForALeafLayer(textLayer).colors
 
-        var textAttributes = textLayer.attributedStringValue().treeAsDictionary().attributes
+        let textAttributes = textLayer.attributedStringValue().treeAsDictionary().attributes
         for (let i = 0; i < textAttributes.length; i++) {
-            var attribute = textAttributes[i]
+            let attribute = textAttributes[i]
             if (attribute.MSAttributedStringColorAttribute == undefined) {
                 continue
             }
 
-            var colorString = attribute.MSAttributedStringColorAttribute.value
+            let colorString = attribute.MSAttributedStringColorAttribute.value
             if (isHexRepresentationOfAColor(colorString)) {
                 layerColors.push(CHRMSColorFactory.createFromHexRepresentation(colorString))
             } else if (isRgbaDescriptionOfAColor(colorString)) {
                 layerColors.push(CHRMSColorFactory.createFromRgbaDescription(colorString))
             } else {
-                var errorMessage = "Warning: 'getLayerColorsMappingForALeafTextLayer' found a color that is not a hex description and nor a rgba description"
+                let errorMessage = "Warning: 'getLayerColorsMappingForALeafTextLayer' found a color that is not a hex description and nor a rgba description"
                 raiseWarningError(errorMessage)
             }
         }
@@ -132,7 +132,7 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
      * @return {CHRLayerColorsMapping}
      */
     function getLayerColorsMappingForALeafSliceLayer(sliceLayer) {
-        var layerColors = sliceLayer.hasBackgroundColor() ? [sliceLayer.backgroundColor()] : []
+        let layerColors = sliceLayer.hasBackgroundColor() ? [sliceLayer.backgroundColor()] : []
         return new CHRLayerColorsMapping(sliceLayer, layerColors)
     }
 
@@ -143,7 +143,7 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
      * @return {CHRLayerColorsMapping}
      */
     function getLayerColorsMappingForALeafLayer(layer) {
-        var layerColors = CHRStyleParser.getColors(layer.style())
+        let layerColors = CHRStyleParser.getColors(layer.style())
         return new CHRLayerColorsMapping(layer, layerColors)
     }
 
