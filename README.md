@@ -16,6 +16,8 @@
 
 **Vladimir:** Just double click on the sketchplugin file ;)
 
+[![Install Chromata with Sketchpacks](http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Chromata with Sketchpacks")](https://sketchpacks.com/abnamrocoesd/Chromata/install)
+
 ## Usage
 
 **Dunya:** I installed it. Now what?
