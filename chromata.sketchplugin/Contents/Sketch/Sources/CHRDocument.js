@@ -37,11 +37,11 @@ class CHRDocument {
      * @return {Array.<CHRLayerColorsMapping>}
      */
     getLayerColorsMappingForDocument() {
-        var mappings = []
+        let mappings = []
 
-        var pages = this.document.pages()
-        for (var i = 0; i < pages.length; i++) {
-            var page = pages[i]
+        let pages = this.document.pages()
+        for (let i = 0; i < pages.length; i++) {
+            let page = pages[i]
             mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
         }
 
