@@ -23,9 +23,9 @@
 @import 'Sources/CHRLayerParser.js'
 
 /** Class representing a wrapper around MSPage */
-class CHRPage {
+class CHRPageParser {
     /**
-     * Create a CHRPage from a MSPage
+     * Create a CHRPageParser from a MSPage
      * @param {MSPage} page
      */
     constructor(page) {
