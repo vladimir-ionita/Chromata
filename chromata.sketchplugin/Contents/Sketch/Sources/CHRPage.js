@@ -24,27 +24,27 @@
 
 /** Class representing a wrapper around MSPage */
 class CHRPage {
-  /**
-   * Create a CHRPage from a MSPage
-   * @param {MSPage} page
-   */
-  constructor(page) {
-    this.page = page
-  }
-
-  /**
-   * Get the mappings between a page's layers and their colors
-   * @return {Array.<CHRLayerColorsMapping>}
-   */
-  getLayerColorsMappingsForPage() {
-    var mappings = []
-
-    var layers = this.page.layers()
-    for (var i = 0; i < layers.length; i++) {
-      var layer = layers[i]
-      mappings = mappings.concat(CHRLayerParser.getLayerColorsMappingsForLayer(layer))
+    /**
+     * Create a CHRPage from a MSPage
+     * @param {MSPage} page
+     */
+    constructor(page) {
+        this.page = page
     }
 
-    return mappings
-  }
+    /**
+     * Get the mappings between a page's layers and their colors
+     * @return {Array.<CHRLayerColorsMapping>}
+     */
+    getLayerColorsMappingsForPage() {
+        var mappings = []
+
+        var layers = this.page.layers()
+        for (var i = 0; i < layers.length; i++) {
+            var layer = layers[i]
+            mappings = mappings.concat(CHRLayerParser.getLayerColorsMappingsForLayer(layer))
+        }
+
+        return mappings
+    }
 }
