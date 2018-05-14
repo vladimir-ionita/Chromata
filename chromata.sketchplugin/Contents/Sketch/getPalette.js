@@ -24,25 +24,25 @@
 @import 'Core/CHRPalette.js'
 
 var onRun = function(context) {
-  globalContext = context
+    globalContext = context
 
-  var selectedLayers = context.selection
-  if (selectedLayers.length == 0) {
-    var message = "You haven't selected any layers."
-    context.document.showMessage(message)
+    var selectedLayers = context.selection
+    if (selectedLayers.length == 0) {
+        var message = "You haven't selected any layers."
+        context.document.showMessage(message)
 
-    return
-  }
+        return
+    }
 
-  var palette = getColorsFromLayers(selectedLayers)
-  if (palette.length > 0) {
-    CHRPalette.savePalette(palette)
-    var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
-    context.document.showMessage(message)
-  } else {
-    var message = "Palette saved. No colors."
-    context.document.showMessage(message)
-  }
+    var palette = getColorsFromLayers(selectedLayers)
+    if (palette.length > 0) {
+        CHRPalette.savePalette(palette)
+        var message = 'Palette saved. You got ' + palette.length + ' colors in your palette.'
+        context.document.showMessage(message)
+    } else {
+        var message = "Palette saved. No colors."
+        context.document.showMessage(message)
+    }
 }
 
 /**
@@ -51,17 +51,17 @@ var onRun = function(context) {
  * @return {Array.<CHRLayerColorsMapping>}
  */
 function getColorsFromLayers(layers) {
-  var colors = []
+    var colors = []
 
-  for (var i = 0; i < layers.length; i++) {
-    var layer = layers[i]
+    for (var i = 0; i < layers.length; i++) {
+        var layer = layers[i]
 
-    var layerMappings = CHRLayerParser.getLayerColorsMappingsForLayer(layer)
-    for (var j = 0; j < layerMappings.length; j++) {
-      var layerColors = layerMappings[j].colors
-      colors = colors.concat(layerColors)
+        var layerMappings = CHRLayerParser.getLayerColorsMappingsForLayer(layer)
+        for (var j = 0; j < layerMappings.length; j++) {
+            var layerColors = layerMappings[j].colors
+            colors = colors.concat(layerColors)
+        }
     }
-  }
 
-  return colors
+    return colors
 }
