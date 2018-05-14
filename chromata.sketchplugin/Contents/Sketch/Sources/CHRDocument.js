@@ -42,7 +42,7 @@ class CHRDocument {
     var pages = this.document.pages()
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i]
-      mappings = mappings.concat(new CHRPageParser(page).getLayerColorsMappingsForPage())
+      mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
     }
 
     return mappings
