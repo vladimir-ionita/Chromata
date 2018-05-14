@@ -20,6 +20,8 @@
 */
 
 
+@import 'Sources/Utilities/CHRErrorHandler.js'
+
 /**
  * Class representing a parser around MSStyle
  */
@@ -31,8 +33,6 @@ function CHRStyleParser() {}
  * @return {Array.<MSColor>}
  */
 CHRStyleParser.getColors = (function() {
-    @import 'Sources/Utilities/CHRErrorHandler.js'
-
     /**
      * Get style's colors
      * @param {MSStyle} style
