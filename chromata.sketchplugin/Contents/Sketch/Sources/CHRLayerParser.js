@@ -24,7 +24,7 @@
 @import 'Sources/CHRLayerColorsMapping.js'
 @import 'Sources/Utilities/Colors/CHRColorsHelper.js'
 @import 'Sources/Utilities/Colors/CHRMSColorFactory.js'
-@import 'Sources/Utilities/CHRErrorHandler.js'
+@import 'Core/CHRErrorHandler.js'
 
 /**
  * Class representing a parser around MSLayer

@@ -20,7 +20,7 @@
 */
 
 
-@import 'Sources/Utilities/CHRErrorHandler.js'
+@import 'Core/CHRErrorHandler.js'
 
 /**
  * Class representing a parser around MSStyle
