@@ -23,5 +23,11 @@
       "name": "Fix Colors",
       "identifier": "fix-colors"
     }
-  ]
+  ],
+  "menu": {
+    "items": [
+      "get-palette",
+      "fix-colors"
+    ]
+  }
 }
