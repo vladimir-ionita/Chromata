@@ -38,7 +38,7 @@ CHRDocumentParser.getLayerColorsMappingsForDocument = function(document) {
     let pages = document.pages()
     for (let i = 0; i < pages.length; i++) {
         let page = pages[i]
-        mappings = mappings.concat(CHRPageParser().getLayerColorsMappingsForPage(page))
+        mappings = mappings.concat(CHRPageParser.getLayerColorsMappingsForPage(page))
     }
 
     return mappings
