@@ -22,11 +22,14 @@
 
 @import 'Storage/CHRUserDefaults.js'
 
-/** Class representing a palette */
+/**
+ * Class representing a palette
+ */
 function CHRPalette() { }
 
 /**
  * Save the palette in user defaults
+ *
  * @param {Array.<MSColor>} palette
  */
 CHRPalette.savePalette = function(palette) {
@@ -38,9 +41,11 @@ CHRPalette.savePalette = function(palette) {
 }
 
 /**
- * Load the pallete from user defaults
+ * Load the palette from user defaults
+ *
  * Notes: Couldn't use the map function over the array. For some
- *  unknown reasons, it crashes Sketch
+ * unknown reasons, it crashes Sketch
+ *
  * @return {Array.<MSColor>}
  */
 CHRPalette.loadPalette = function() {
@@ -52,4 +57,24 @@ CHRPalette.loadPalette = function() {
     }
 
     return palette
+}
+
+/**
+ * Check if a color is in a palette
+ *
+ * @param {MSColor} color
+ * @param {Array.<MSColor>} palette
+ *
+ * @return {boolean}
+ */
+CHRPalette.isColorInPalette = function(color, palette) {
+    const comparisionPrecision = 0.9/255
+
+    for (let i = 0; i < palette.length; i++) {
+        if (palette[i].fuzzyIsEqual_precision(color, comparisionPrecision)) {
+            return true
+        }
+    }
+
+    return false
 }
