@@ -15,13 +15,6 @@
       "shortcut": "command shift p",
       "name": "Register Palette",
       "identifier": "register-palette"
-    },
-    {
-      "script": "fixColors.js",
-      "handler": "onRun",
-      "shortcut": "command shift f",
-      "name": "Fix Colors",
-      "identifier": "fix-colors"
     }
   ],
   "menu": {
