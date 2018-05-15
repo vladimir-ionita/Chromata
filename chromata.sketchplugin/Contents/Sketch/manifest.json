@@ -41,7 +41,14 @@
   "menu": {
     "items": [
       "register-palette",
-      "fix-colors"
+      {
+        "title": "Rogue layers",
+        "items": [
+          "find-rogue-layers",
+          "move-previous-rogue-layer",
+          "move-next-rogue-layer"
+        ]
+      }
     ]
   }
 }
