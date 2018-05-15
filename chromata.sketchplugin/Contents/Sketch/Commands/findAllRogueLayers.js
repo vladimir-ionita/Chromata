@@ -18,3 +18,18 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
+@import 'Commands/CommandsShared.js'
+
+/**
+ * Find all rogue layers
+ *
+ * This command will find all layers that have colors outside of your palette
+ *
+ * @param context
+ */
+var findAllRogueLayers = function(context) {
+    setupEnvironment()
+}
+
