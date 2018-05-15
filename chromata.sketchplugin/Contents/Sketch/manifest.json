@@ -10,11 +10,11 @@
   "appcast": "https://github.com/abnamrocoesd/Chromata/blob/master/.appcast.xml",
   "commands": [
     {
-      "script": "getPalette.js",
+      "script": "registerPalette.js",
       "handler": "onRun",
       "shortcut": "command shift p",
-      "name": "Get Palette",
-      "identifier": "get-palette"
+      "name": "Register Palette",
+      "identifier": "register-palette"
     },
     {
       "script": "fixColors.js",
@@ -26,7 +26,7 @@
   ],
   "menu": {
     "items": [
-      "get-palette",
+      "register-palette",
       "fix-colors"
     ]
   }
