@@ -22,6 +22,8 @@
 
 @import 'Storage/CHRUserDefaults.js'
 
+const kUserDefaultsPaletteKey = "palette"
+
 /**
  * Class representing a palette
  */
@@ -37,7 +39,7 @@ CHRPalette.savePalette = function(palette) {
         return color.RGBADictionary()
     })
 
-    CHRUserDefaults.saveValueForKey(paletteRgba, 'palette')
+    CHRUserDefaults.saveValueForKey(paletteRgba, kUserDefaultsPaletteKey)
 }
 
 /**
@@ -49,7 +51,7 @@ CHRPalette.savePalette = function(palette) {
  * @return {Array.<MSColor>}
  */
 CHRPalette.loadPalette = function() {
-    let rawPaletteRgba = CHRUserDefaults.fetchValueForKey('palette')
+    let rawPaletteRgba = CHRUserDefaults.fetchValueForKey(kUserDefaultsPaletteKey)
 
     let palette = []
     for (let i = 0; i < rawPaletteRgba.length; i++) {
