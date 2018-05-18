@@ -44,5 +44,5 @@ let findAllRogueLayers = function(context) {
 
     let layersIds = rogueLayers.map(layer => layer.objectID())
     CHRRogueLayers.saveRogueLayersIds(layersIds)
-    CHRRogueLayers.saveRogueLayersCursor(layersIds[0])
+    CHRRogueLayers.removeRogueLayersCursor()
 }
