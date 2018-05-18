@@ -81,7 +81,5 @@ function getRogueLayersCursorIndex(rogueLayersIds) {
         rogueLayersIdsCursor == rogueLayersIds[0]
     }
 
-    return rogueLayersIds.find(function(element) {
-        return element == rogueLayersIdsCursor
-    })
+    return rogueLayersIds.findIndex(element => element == rogueLayersIdsCursor)
 }
