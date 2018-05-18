@@ -19,10 +19,43 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 /**
  * Register a global context
+ *
  * @param context
  */
 function setupEnvironment(context) {
     globalContext = context
+}
+
+/**
+ * Select a layer in a document
+ *
+ * @param {MSDocument} document
+ * @param {MSLayer} layer
+ */
+function selectLayer(document, layer) {
+    document.setCurrentPage(layer.parentPage())
+    document.currentPage().changeSelectionBySelectingLayers([])
+    layer.select_byExpandingSelection(true, true)
+}
+
+/**
+ * Move focus to a specific layer
+ *
+ * @param {MSDocument} document
+ * @param {MSLayer} layer
+ */
+function moveViewportFocusToLayer(document, layer) {
+    const padding = 100
+
+    let focusRect = NSMakeRect(
+        layer.absolutePosition().x - padding,
+        layer.absolutePosition().y - padding,
+        layer.frame().size().width + padding * 2,
+        layer.frame().size().height + padding * 2
+    )
+
+    document.currentContentViewController().contentDrawView().zoomToFitRect(focusRect)
 }
