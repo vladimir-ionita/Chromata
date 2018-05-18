@@ -23,9 +23,15 @@
 @import 'Parser/CHRLayerParser.js'
 @import 'Core/CHRPalette.js'
 
-var onRun = function(context) {
-    globalContext = context
-
+/**
+ * Register a palette
+ *
+ * Select the layers that contains all the colors you want to have
+ * in your palette and run 'register palette' command
+ *
+ * @param context
+ */
+let registerPalette = function(context) {
     let selectedLayers = context.selection
     if (selectedLayers.length == 0) {
         let message = "You haven't selected any layers."
@@ -47,7 +53,9 @@ var onRun = function(context) {
 
 /**
  * Get all colors from a list of layers
+ *
  * @param {Array.<MSLayer>} layers
+ *
  * @return {Array.<CHRLayerColorsMapping>}
  */
 function getColorsFromLayers(layers) {
