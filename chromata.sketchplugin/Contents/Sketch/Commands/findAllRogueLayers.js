@@ -20,7 +20,9 @@
 */
 
 
-@import 'Commands/CommandsShared.js'
+@import 'Core/CHRPalette.js'
+@import 'Parser/CHRDocumentParser.js'
+@import 'Core/CHRRogueLayers.js'
 
 /**
  * Find all rogue layers
@@ -29,7 +31,18 @@
  *
  * @param context
  */
-var findAllRogueLayers = function(context) {
-    setupEnvironment()
-}
+let findAllRogueLayers = function(context) {
+    let palette = CHRPalette.loadPalette()
+    if (palette.length == 0) {
+        context.document.showMessage('You have no colors in your palette.')
+        return
+    }
 
+    let mappings = CHRDocumentParser.getLayerColorsMappingsForDocument(context.document)
+    let rogueLayers = CHRRogueLayers.getRogueLayersFromLayerMappings(mappings, palette)
+    context.document.showMessage("You have " + rogueLayers.length + " rogue layers.")
+
+    let layersIds = rogueLayers.map(layer => layer.objectID())
+    CHRRogueLayers.saveRogueLayersIds(layersIds)
+    CHRRogueLayers.saveRogueLayersCursor(layersIds[0])
+}
