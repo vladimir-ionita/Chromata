@@ -32,10 +32,10 @@ function setupEnvironment(context) {
 /**
  * Select a layer in a document
  *
- * @param {MSDocument} document
  * @param {MSLayer} layer
+ * @param {MSDocument} document
  */
-function selectLayer(document, layer) {
+function selectLayerInDocument(layer, document) {
     document.setCurrentPage(layer.parentPage())
     document.currentPage().changeSelectionBySelectingLayers([])
     layer.select_byExpandingSelection(true, true)
@@ -44,10 +44,10 @@ function selectLayer(document, layer) {
 /**
  * Move focus to a specific layer
  *
- * @param {MSDocument} document
  * @param {MSLayer} layer
+ * @param {MSDocument} document
  */
-function moveViewportFocusToLayer(document, layer) {
+function moveViewportFocusToLayerInDocument(layer, document) {
     const padding = 100
 
     let focusRect = NSMakeRect(
