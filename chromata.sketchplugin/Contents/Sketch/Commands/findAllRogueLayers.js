@@ -23,6 +23,7 @@
 @import 'Core/CHRPalette.js'
 @import 'Parser/CHRDocumentParser.js'
 @import 'Core/CHRRogueLayers.js'
+@import "Commands/moveToNextRogueLayer.js"
 
 /**
  * Find all rogue layers
@@ -34,15 +35,22 @@
 let findAllRogueLayers = function(context) {
     let palette = CHRPalette.loadPalette()
     if (palette.length == 0) {
-        context.document.showMessage('You have no colors in your palette.')
+        context.document.showMessage("You have no colors in your palette.")
         return
     }
 
     let mappings = CHRDocumentParser.getLayerColorsMappingsForDocument(context.document)
     let rogueLayers = CHRRogueLayers.getRogueLayersFromLayerMappings(mappings, palette)
-    context.document.showMessage("You have " + rogueLayers.length + " rogue layers.")
 
-    let layersIds = rogueLayers.map(layer => layer.objectID())
-    CHRRogueLayers.saveRogueLayersIds(layersIds)
-    CHRRogueLayers.removeRogueLayersCursor()
+    if (rogueLayers.length != 0) {
+        context.document.showMessage("You have " + rogueLayers.length + " rogue layers.")
+
+        let layersIds = rogueLayers.map(layer => layer.objectID())
+        CHRRogueLayers.saveRogueLayersIds(layersIds)
+        CHRRogueLayers.removeRogueLayersCursor()
+
+        moveToNextRogueLayer(context)
+    } else {
+        context.document.showMessage("You have no rogue layers.")
+    }
 }
