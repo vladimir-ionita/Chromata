@@ -24,12 +24,15 @@
 
 /**
  * Class representing a parser around MSPage
+ * @class
  */
 function CHRPageParser() {}
 
 /**
  * Get the mappings between a page's layers and their colors
+ *
  * @param {MSPage} page
+ *
  * @return {Array.<CHRLayerColorsMapping>}
  */
 CHRPageParser.getLayerColorsMappingsForPage = function(page) {
@@ -42,4 +45,27 @@ CHRPageParser.getLayerColorsMappingsForPage = function(page) {
     }
 
     return mappings
+}
+
+/**
+ * Get layer by id from a page
+ *
+ * @param {string} layerId
+ * @param {MSPage} page
+ *
+ * @return {MSLayer|null}
+ */
+CHRPageParser.getLayerByIdFromPage = function(layerId, page) {
+    let layers = page.layers()
+
+    for (let i = 0; i < layers.length; i++) {
+        let layer = layers[i]
+
+        let leafLayer = CHRLayerParser.getLeafLayerByIdFromNodeLayer(layerId, layer)
+        if (leafLayer) {
+            return leafLayer
+        }
+    }
+
+    return null
 }
