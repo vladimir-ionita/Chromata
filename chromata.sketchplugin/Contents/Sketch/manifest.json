@@ -10,29 +10,29 @@
   "appcast": "https://github.com/abnamrocoesd/Chromata/blob/master/.appcast.xml",
   "commands": [
     {
-      "script": "Commands/registerPalette.js",
-      "handler": "registerPalette",
+      "script": "commands.js",
+      "handler": "registerPaletteCommand",
       "shortcut": "command shift p",
       "name": "Register Palette",
       "identifier": "register-palette"
     },
     {
-      "script": "Commands/findAllRogueLayers.js",
-      "handler": "findAllRogueLayers",
+      "script": "commands.js",
+      "handler": "findAllRogueLayersCommand",
       "shortcut": "command shift f",
       "name": "Find all rogue layers",
       "identifier": "find-rogue-layers"
     },
     {
-      "script": "Commands/moveToPreviousRogueLayer.js",
-      "handler": "moveToPreviousRogueLayer",
+      "script": "commands.js",
+      "handler": "moveToPreviousRogueLayerCommand",
       "shortcut": "command shift <",
       "name": "Move to previous rogue layer",
       "identifier": "move-previous-rogue-layer"
     },
     {
-      "script": "Commands/moveToNextRogueLayer.js",
-      "handler": "moveToNextRogueLayer",
+      "script": "commands.js",
+      "handler": "moveToNextRogueLayerCommand",
       "shortcut": "command shift >",
       "name": "Move to next rogue layer",
       "identifier": "move-next-rogue-layer"
