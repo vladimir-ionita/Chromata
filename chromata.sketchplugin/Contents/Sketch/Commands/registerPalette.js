@@ -20,7 +20,6 @@
 */
 
 
-@import 'Commands/CommandsShared.js'
 @import 'Parser/CHRLayerParser.js'
 @import 'Core/CHRPalette.js'
 
@@ -32,9 +31,7 @@
  *
  * @param context
  */
-var registerPalette = function(context) {
-    setupEnvironment(context)
-
+let registerPalette = function(context) {
     let selectedLayers = context.selection
     if (selectedLayers.length == 0) {
         let message = "You haven't selected any layers."
