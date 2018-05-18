@@ -45,7 +45,7 @@ let moveToNextRogueLayer = function(context) {
         return
     }
 
-    let rogueLayersIdsCursorIndex = getRogueLayersCursorIndex(rogueLayersIds)
+    let rogueLayersIdsCursorIndex = CHRRogueLayers.getRogueLayersCursorIndex(rogueLayersIds)
     if (rogueLayersIdsCursorIndex == undefined) {
         rogueLayersIdsCursorIndex = -1
     }
@@ -66,20 +66,4 @@ let moveToNextRogueLayer = function(context) {
     } else {
         context.document.showMessage("You are all set. There are no rogue layers left.")
     }
-}
-
-/**
- * Get rogue layers cursor index
- *
- * @param {Array.<string>} rogueLayersIds
- *
- * return {number|undefined}
- */
-function getRogueLayersCursorIndex(rogueLayersIds) {
-    let rogueLayersIdsCursor = CHRRogueLayers.loadRogueLayersCursor()
-    if (rogueLayersIdsCursor == null) {
-        rogueLayersIdsCursor == rogueLayersIds[0]
-    }
-
-    return rogueLayersIds.findIndex(element => element == rogueLayersIdsCursor)
 }

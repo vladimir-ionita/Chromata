@@ -64,6 +64,22 @@ CHRRogueLayers.isLayerRogue = function(layerMapping, palette) {
 }
 
 /**
+ * Get rogue layers cursor index
+ *
+ * @param {Array.<string>} rogueLayersIds
+ *
+ * return {number|undefined}
+ */
+CHRRogueLayers.getRogueLayersCursorIndex = function(rogueLayersIds) {
+    let rogueLayersIdsCursor = CHRRogueLayers.loadRogueLayersCursor()
+    if (rogueLayersIdsCursor == null) {
+        rogueLayersIdsCursor == rogueLayersIds[0]
+    }
+
+    return rogueLayersIds.findIndex(element => element == rogueLayersIdsCursor)
+}
+
+/**
  * Save rogue layers ids in user defaults for later use
  *
  * @param {Array.<string>} layersIds
