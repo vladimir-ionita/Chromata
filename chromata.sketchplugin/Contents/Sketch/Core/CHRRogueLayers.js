@@ -98,3 +98,10 @@ CHRRogueLayers.saveRogueLayersCursor = function(layerId) {
 CHRRogueLayers.loadRogueLayersCursor = function() {
     return CHRUserDefaults.fetchValueForKey(kUserDefaultsRogueLayersCursorKey)
 }
+
+/**
+ * Remove rogue layers cursor from user defaults
+ */
+CHRRogueLayers.removeRogueLayersCursor = function() {
+    CHRUserDefaults.removeValueForKey(kUserDefaultsRogueLayersCursorKey)
+}
