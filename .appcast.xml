@@ -7,10 +7,10 @@
     <item>
       <title>Version 0.2.5</title>
       <description><![CDATA[
-            <ul>
-              <li>First release</li>
-            </ul>
-          ]]></description>
+        <ul>
+          <li>First release</li>
+        </ul>
+      ]]></description>
       <pubDate>Sat, 28 Apr 2018 10:56:00 +0200</pubDate>
       <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.2.5/chromata.sketchplugin.zip" sparkle:version="0.2.5"/>
     </item>
