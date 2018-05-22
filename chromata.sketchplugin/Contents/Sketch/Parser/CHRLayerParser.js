@@ -28,18 +28,23 @@
 
 /**
  * Class representing a parser around MSLayer
+ * @class
  */
 function CHRLayerParser() {}
 
 /**
  * Get the mappings for a layer
+ *
  * @param {MSLayer} layer
+ *
  * @return {Array.<CHRLayerColorsMapping>}
  */
 CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
     /**
      * Get the mappings for a layer
+     *
      * @param {MSLayer} layer
+     *
      * @return {Array.<CHRLayerColorsMapping>}
      */
     function getLayerColorsMappingsForLayer(layer) {
@@ -78,7 +83,9 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
 
     /**
      * Get the mappings for a nested layer
+     *
      * @param {MSArtboardGroup|MSLayerGroup|MSSymbolMaster} nestedLayer
+     *
      * @return {Array.<CHRLayerColorsMapping>}
      */
     function getLayersColorsMappingsForANestedLayer(nestedLayer) {
@@ -96,7 +103,9 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
     /**
      * Get the mapping of a text layer and its colors
      * A text layer is also a leaf layer, it has no children layers
+     *
      * @param {MSTextLayer} textLayer
+     *
      * @return {CHRLayerColorsMapping}
      */
     function getLayerColorsMappingForALeafTextLayer(textLayer) {
@@ -126,7 +135,9 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
     /**
      * Get the mapping of a slice layer and its colors
      * A slice layer is also a leaf layer, it has no children layers
+     *
      * @param {MSSliceLayer} sliceLayer
+     *
      * @return {CHRLayerColorsMapping}
      */
     function getLayerColorsMappingForALeafSliceLayer(sliceLayer) {
@@ -137,7 +148,9 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
     /**
      * Get the mapping of a leaf layer and its colors
      * A leaf layer is a layer that has no children layers
+     *
      * @param {MSLayer} layer
+     *
      * @return {CHRLayerColorsMapping}
      */
     function getLayerColorsMappingForALeafLayer(layer) {
@@ -147,3 +160,38 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
 
     return getLayerColorsMappingsForLayer
 })()
+
+/**
+ * Get a leaf layer by id from a node layer
+ *
+ * @param {string} layerId
+ * @param {MSLayer} layer
+ *
+ * @return {MSLayer|null}
+ */
+CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
+    let layerClass = layer.class()
+    switch (layerClass) {
+        case MSArtboardGroup:
+        case MSSymbolMaster:
+        case MSLayerGroup:
+            let childrenLayers = layer.layers()
+            for (let i = 0; i < childrenLayers.length; i++) {
+                let nodeLayer = childrenLayers[i]
+
+                let leafLayer = CHRLayerParser.getLeafLayerByIdFromNodeLayer(layerId, nodeLayer)
+                if (leafLayer) {
+                    return leafLayer
+                }
+            }
+
+            return null
+
+        default:
+            if (String(layer.objectID()).valueOf() == String(layerId).valueOf()) {
+                return layer
+            } else {
+                return null
+            }
+    }
+}

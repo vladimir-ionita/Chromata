@@ -1,27 +1,54 @@
 {
   "name": "Chromata",
   "identifier": "vladimirionita.chromata",
-  "version": "0.3.7",
+  "version": "0.4.2",
   "description": "A sketch plugin to find and fix layers that have colors outside of your palette.",
   "authorEmail": "ionita.vladimir@gmail.com",
   "author": "Vladimir Ionita",
   "icon": "icon.png",
-  "compatibleVersion": "50",
+  "compatibleVersion": "50.2",
   "appcast": "https://github.com/abnamrocoesd/Chromata/blob/master/.appcast.xml",
   "commands": [
     {
-      "script": "getPalette.js",
-      "handler": "onRun",
+      "script": "commands.js",
+      "handler": "registerPaletteCommand",
       "shortcut": "command shift p",
-      "name": "Get Palette",
-      "identifier": "get-palette"
+      "name": "Register Palette",
+      "identifier": "register-palette"
     },
     {
-      "script": "fixColors.js",
-      "handler": "onRun",
+      "script": "commands.js",
+      "handler": "findAllRogueLayersCommand",
       "shortcut": "command shift f",
-      "name": "Fix Colors",
-      "identifier": "fix-colors"
+      "name": "Find all rogue layers",
+      "identifier": "find-rogue-layers"
+    },
+    {
+      "script": "commands.js",
+      "handler": "moveToPreviousRogueLayerCommand",
+      "shortcut": "command shift <",
+      "name": "Move to previous rogue layer",
+      "identifier": "move-previous-rogue-layer"
+    },
+    {
+      "script": "commands.js",
+      "handler": "moveToNextRogueLayerCommand",
+      "shortcut": "command shift >",
+      "name": "Move to next rogue layer",
+      "identifier": "move-next-rogue-layer"
     }
-  ]
+  ],
+  "menu": {
+    "items": [
+      "register-palette",
+      {
+        "title": "Rogue layers",
+        "items": [
+          "find-rogue-layers",
+          "move-previous-rogue-layer",
+          "move-next-rogue-layer"
+        ]
+      }
+    ]
+  }
 }

@@ -33,5 +33,27 @@
       <pubDate>Mon, 7 May 2018 23:29:44 +0200</pubDate>
       <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.3.5/chromata.sketchplugin.zip" sparkle:version="0.3.5"/>
     </item>
+    <item>
+      <title>Version 0.4.2</title>
+      <description><![CDATA[
+        Direct impact:
+        <ul>
+          <li>New feature: Find all rogue layers</li>
+          <li>New feature: Navigation trough rogue layers</li>
+          <li>Feature removed: Fix Colors</li>
+          <li>Issue fixed: gradient parser</li>
+          <li>Issue fixed: multiple borders parser</li>
+          <li>Add sketchpacks integration</li>
+        </ul>
+        Indirect impact:
+        <ul>
+          <li>Update bump-version script to read plugin version and sketch version automatically</li>
+          <li>Better documentation</li>
+          <li>Major refactoring</li>
+        </ul>
+      ]]></description>
+      <pubDate>Tue, 22 May 2018 9:07:13 +0200</pubDate>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.4.2/chromata.sketchplugin.zip" sparkle:version="0.4.2"/>
+    </item>
   </channel>
 </rss>
