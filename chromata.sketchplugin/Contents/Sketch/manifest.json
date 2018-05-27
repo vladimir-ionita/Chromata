@@ -1,7 +1,7 @@
 {
   "name": "Chromata",
   "identifier": "vladimirionita.chromata",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "A sketch plugin to find and fix layers that have colors outside of your palette.",
   "authorEmail": "ionita.vladimir@gmail.com",
   "author": "Vladimir Ionita",
