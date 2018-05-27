@@ -55,5 +55,16 @@
       <pubDate>Tue, 22 May 2018 9:07:13 +0200</pubDate>
       <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.4.2/chromata.sketchplugin.zip" sparkle:version="0.4.2"/>
     </item>
+    <item>
+      <title>Version 0.5.0</title>
+      <description><![CDATA[
+        **Chromata can work with multiple files.** Until now you could have a single palette and a single list.
+        Whenever you switched files, you had to register again palette and find all rogue
+        layers again. This was solved in this version. Now you have a separate palette and a separate list of rogue
+        layers per file.
+      ]]></description>
+      <pubDate>Sun, 27 May 2018 12:49:33 +0200</pubDate>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.5.0/chromata.sketchplugin.zip" sparkle:version="0.5.0"/>
+    </item>
   </channel>
 </rss>
