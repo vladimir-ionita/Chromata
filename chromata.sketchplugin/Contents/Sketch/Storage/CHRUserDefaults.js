@@ -28,6 +28,16 @@ const kUserDefaultsChromataSuiteName = "com.vladimirionita.chromata"
 function CHRUserDefaults() {}
 
 /**
+ * Get suite name for user defaults
+ *
+ * @return {string}
+ */
+CHRUserDefaults.getSuiteName = function() {
+    let fileName = globalContext.document.cloudName()
+    return [kUserDefaultsChromataSuiteName, fileName].join("-")
+}
+
+/**
  * Save value for key in user defaults
  *
  * @param {T} value
