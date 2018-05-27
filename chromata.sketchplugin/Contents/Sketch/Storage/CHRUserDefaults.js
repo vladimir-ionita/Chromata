@@ -20,7 +20,7 @@
 */
 
 
-const pluginIdentifier = "com.vladimirionita.chromata"
+const kUserDefaultsChromataSuiteName = "com.vladimirionita.chromata"
 
 /**
  * Class representing a wrapper around NSUserDefaults
@@ -34,7 +34,7 @@ function CHRUserDefaults() {}
  * @param {string} key
  */
 CHRUserDefaults.saveValueForKey = function(value, key) {
-    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(kUserDefaultsChromataSuiteName)
     userDefaults.setObject_forKey(value, key)
     userDefaults.synchronize()
 }
@@ -47,7 +47,7 @@ CHRUserDefaults.saveValueForKey = function(value, key) {
  * @return {T|null}
  */
 CHRUserDefaults.fetchValueForKey = function(key) {
-    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(kUserDefaultsChromataSuiteName)
     return userDefaults.valueForKey(key)
 }
 
@@ -58,7 +58,7 @@ CHRUserDefaults.fetchValueForKey = function(key) {
  * @param {string} key
  */
 CHRUserDefaults.removeValueForKey = function(key) {
-    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(pluginIdentifier)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(kUserDefaultsChromataSuiteName)
     userDefaults.removeObjectForKey(key)
     userDefaults.synchronize()
 }
