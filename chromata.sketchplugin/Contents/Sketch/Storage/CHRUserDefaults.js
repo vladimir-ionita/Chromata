@@ -44,7 +44,7 @@ CHRUserDefaults.getSuiteName = function() {
  * @param {string} key
  */
 CHRUserDefaults.saveValueForKey = function(value, key) {
-    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(kUserDefaultsChromataSuiteName)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(CHRUserDefaults.getSuiteName())
     userDefaults.setObject_forKey(value, key)
     userDefaults.synchronize()
 }
@@ -57,10 +57,9 @@ CHRUserDefaults.saveValueForKey = function(value, key) {
  * @return {T|null}
  */
 CHRUserDefaults.fetchValueForKey = function(key) {
-    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(kUserDefaultsChromataSuiteName)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(CHRUserDefaults.getSuiteName())
     return userDefaults.valueForKey(key)
 }
-
 
 /**
  * Remove value for key from user defaults
@@ -68,7 +67,7 @@ CHRUserDefaults.fetchValueForKey = function(key) {
  * @param {string} key
  */
 CHRUserDefaults.removeValueForKey = function(key) {
-    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(kUserDefaultsChromataSuiteName)
+    let userDefaults = NSUserDefaults.alloc().initWithSuiteName(CHRUserDefaults.getSuiteName())
     userDefaults.removeObjectForKey(key)
     userDefaults.synchronize()
 }
