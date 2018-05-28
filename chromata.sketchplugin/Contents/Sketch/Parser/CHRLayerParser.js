@@ -175,6 +175,10 @@ CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
         case MSArtboardGroup:
         case MSSymbolMaster:
         case MSLayerGroup:
+            if (String(layer.objectID()).valueOf() == String(layerId).valueOf()) {
+                return layer
+            }
+
             let childrenLayers = layer.layers()
             for (let i = 0; i < childrenLayers.length; i++) {
                 let nodeLayer = childrenLayers[i]
