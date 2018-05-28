@@ -147,6 +147,17 @@ let CHRStyleParser = (function() {
             colors = colors.concat(getInnerShadowsColors(style.enabledInnerShadows()))
 
             return colors
+        },
+
+        /**
+         * Get style's shadow colors
+         *
+         * @param {MSStyle} style
+         *
+         * @return {Array<MSColor>}
+         */
+        getShadowColors: function(style) {
+            return getShadowsColors(style.enabledShadows())
         }
     }
 })()
