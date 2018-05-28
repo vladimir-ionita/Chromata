@@ -89,7 +89,7 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
      * @return {Array.<CHRLayerColorsMapping>}
      */
     function getLayersColorsMappingsForANestedLayer(nestedLayer) {
-        let mappings = [(getLayerColorsMappingForALeafLayer(nestedLayer))]
+        let mappings = [(getLayerColorsMappingForANodeLayer(nestedLayer))]
 
         let childrenLayers = nestedLayer.layers()
         for (let i = 0; i < childrenLayers.length; i++) {
@@ -98,6 +98,22 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
         }
 
         return mappings
+    }
+
+    /**
+     * Get the mapping of a node layer and its colors
+     *
+     * Notes: Nested layers (MSLayerGroup) has no fill colors, but when parsing a style,
+     * it will actually shows that there is a fill color. That's why we need to get only
+     * whitelisted style colors, which are shadows for nested layers.
+     *
+     * @param {MSLayer} nodeLayer
+     *
+     * @return {CHRLayerColorsMapping}
+     */
+    function getLayerColorsMappingForANodeLayer(nodeLayer) {
+        let layerColors = CHRStyleParser.getShadowColors(nodeLayer.style())
+        return new CHRLayerColorsMapping(nodeLayer, layerColors)
     }
 
     /**
