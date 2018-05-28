@@ -61,7 +61,7 @@ CHRPageParser.getLayerByIdFromPage = function(layerId, page) {
     for (let i = 0; i < layers.length; i++) {
         let layer = layers[i]
 
-        let leafLayer = CHRLayerParser.getLeafLayerByIdFromNodeLayer(layerId, layer)
+        let leafLayer = CHRLayerParser.getLayerByIdFromNodeLayer(layerId, layer)
         if (leafLayer) {
             return leafLayer
         }

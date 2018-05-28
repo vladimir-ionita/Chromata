@@ -162,14 +162,14 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
 })()
 
 /**
- * Get a leaf layer by id from a node layer
+ * Get a layer by id from a node layer
  *
  * @param {string} layerId
  * @param {MSLayer} layer
  *
  * @return {MSLayer|null}
  */
-CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
+CHRLayerParser.getLayerByIdFromNodeLayer = function(layerId, layer) {
     let layerClass = layer.class()
     switch (layerClass) {
         case MSArtboardGroup:
@@ -183,7 +183,7 @@ CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
             for (let i = 0; i < childrenLayers.length; i++) {
                 let nodeLayer = childrenLayers[i]
 
-                let leafLayer = CHRLayerParser.getLeafLayerByIdFromNodeLayer(layerId, nodeLayer)
+                let leafLayer = CHRLayerParser.getLayerByIdFromNodeLayer(layerId, nodeLayer)
                 if (leafLayer) {
                     return leafLayer
                 }
