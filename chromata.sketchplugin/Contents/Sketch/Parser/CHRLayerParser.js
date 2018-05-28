@@ -194,8 +194,8 @@ CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
         default:
             if (String(layer.objectID()).valueOf() == String(layerId).valueOf()) {
                 return layer
-            } else {
-                return null
             }
+
+            return null
     }
 }
