@@ -25,34 +25,7 @@
 /**
  * Class representing a parser around MSStyle
  */
-function CHRStyleParser() {}
-
-/**
- * Get style's colors
- *
- * @param {MSStyle} style
- *
- * @return {Array.<MSColor>}
- */
-CHRStyleParser.getColors = (function() {
-    /**
-     * Get style's colors
-     *
-     * @param {MSStyle} style
-     *
-     * @return {Array.<MSColor>}
-     */
-    function getColors(style) {
-        let colors = []
-
-        colors = colors.concat(getBordersColors(style.enabledBorders()))
-        colors = colors.concat(getFillsColors(style.enabledFills()))
-        colors = colors.concat(getShadowsColors(style.enabledShadows()))
-        colors = colors.concat(getInnerShadowsColors(style.enabledInnerShadows()))
-
-        return colors
-    }
-
+let CHRStyleParser = (function() {
     /**
      * Get borders colors
      *
@@ -157,5 +130,23 @@ CHRStyleParser.getColors = (function() {
         return colors
     }
 
-    return getColors
+    return {
+        /**
+         * Get style's colors
+         *
+         * @param {MSStyle} style
+         *
+         * @return {Array.<MSColor>}
+         */
+        getColors: function(style) {
+            let colors = []
+
+            colors = colors.concat(getBordersColors(style.enabledBorders()))
+            colors = colors.concat(getFillsColors(style.enabledFills()))
+            colors = colors.concat(getShadowsColors(style.enabledShadows()))
+            colors = colors.concat(getInnerShadowsColors(style.enabledInnerShadows()))
+
+            return colors
+        }
+    }
 })()
