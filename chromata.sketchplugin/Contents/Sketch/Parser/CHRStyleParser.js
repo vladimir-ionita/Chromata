@@ -29,13 +29,17 @@ function CHRStyleParser() {}
 
 /**
  * Get style's colors
+ *
  * @param {MSStyle} style
+ *
  * @return {Array.<MSColor>}
  */
 CHRStyleParser.getColors = (function() {
     /**
      * Get style's colors
+     *
      * @param {MSStyle} style
+     *
      * @return {Array.<MSColor>}
      */
     function getColors(style) {
@@ -49,7 +53,9 @@ CHRStyleParser.getColors = (function() {
 
     /**
      * Get borders colors
+     *
      * @param {Array.<MSStyleBorder>} borders
+     *
      * @return {Array.<MSColor>}
      */
     function getBordersColors(borders) {
@@ -65,7 +71,9 @@ CHRStyleParser.getColors = (function() {
 
     /**
      * Get fills colors
+     *
      * @param {Array.<MSStyleFill>} fills
+     *
      * @return {Array.<MSColor>}
      */
     function getFillsColors(fills) {
@@ -95,7 +103,9 @@ CHRStyleParser.getColors = (function() {
 
     /**
      * Get a gradient's colors
+     *
      * @param {MSGradient} gradient
+     *
      * @return {Array.<MSColor>}
      */
     function getGradientColors(gradient) {
