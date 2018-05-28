@@ -66,5 +66,18 @@
       <pubDate>Sun, 27 May 2018 12:49:33 +0200</pubDate>
       <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.5.0/chromata.sketchplugin.zip" sparkle:version="0.5.0"/>
     </item>
+    <item>
+      <title>Version 0.5.3</title>
+      <description><![CDATA[
+        Bug fixes:
+        <ul>
+        <li>Fixed an error when you would see that a layer was removed and it couldn't be selected.</li>
+        <li>Fixed reading colors from sketch (it wasn't reading shadows and inner shadows until now).</li>
+        <li>Fixed reading colors for nested layers.</li>
+        </ul>
+       ]]></description>
+      <pubDate>Mon, 28 May 2018 14:29:18 +0200</pubDate>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.5.3/chromata.sketchplugin.zip" sparkle:version="0.5.3"/>
+    </item>
   </channel>
 </rss>

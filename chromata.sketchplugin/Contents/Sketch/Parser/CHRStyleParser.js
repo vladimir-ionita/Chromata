@@ -25,31 +25,12 @@
 /**
  * Class representing a parser around MSStyle
  */
-function CHRStyleParser() {}
-
-/**
- * Get style's colors
- * @param {MSStyle} style
- * @return {Array.<MSColor>}
- */
-CHRStyleParser.getColors = (function() {
-    /**
-     * Get style's colors
-     * @param {MSStyle} style
-     * @return {Array.<MSColor>}
-     */
-    function getColors(style) {
-        let colors = []
-
-        colors = colors.concat(getBordersColors(style.enabledBorders()))
-        colors = colors.concat(getFillsColors(style.enabledFills()))
-
-        return colors
-    }
-
+let CHRStyleParser = (function() {
     /**
      * Get borders colors
+     *
      * @param {Array.<MSStyleBorder>} borders
+     *
      * @return {Array.<MSColor>}
      */
     function getBordersColors(borders) {
@@ -65,7 +46,9 @@ CHRStyleParser.getColors = (function() {
 
     /**
      * Get fills colors
+     *
      * @param {Array.<MSStyleFill>} fills
+     *
      * @return {Array.<MSColor>}
      */
     function getFillsColors(fills) {
@@ -95,7 +78,9 @@ CHRStyleParser.getColors = (function() {
 
     /**
      * Get a gradient's colors
+     *
      * @param {MSGradient} gradient
+     *
      * @return {Array.<MSColor>}
      */
     function getGradientColors(gradient) {
@@ -109,5 +94,70 @@ CHRStyleParser.getColors = (function() {
         return colors
     }
 
-    return getColors
+    /**
+     * Get shadows colors
+     *
+     * @param {Array.<MSStyleShadow>} shadows
+     *
+     * @return {Array.<MSColor>}
+     */
+    function getShadowsColors(shadows) {
+        let colors = []
+
+        for (let i = 0; i < shadows.length; i++) {
+            let shadowColor = shadows[i].color()
+            colors.push(shadowColor)
+        }
+
+        return colors
+    }
+
+    /**
+     * Get inner shadows colors
+     *
+     * @param {Array.<MSStyleInnerShadow>} innerShadows
+     *
+     * @return {Array.<MSColor>}
+     */
+    function getInnerShadowsColors(innerShadows) {
+        let colors = []
+
+        for (let i = 0; i < innerShadows.length; i++) {
+            let innerShadowColor = innerShadows[i].color()
+            colors.push(innerShadowColor)
+        }
+
+        return colors
+    }
+
+    return {
+        /**
+         * Get style's colors
+         *
+         * @param {MSStyle} style
+         *
+         * @return {Array.<MSColor>}
+         */
+        getColors: function(style) {
+            let colors = []
+
+            colors = colors.concat(getBordersColors(style.enabledBorders()))
+            colors = colors.concat(getFillsColors(style.enabledFills()))
+            colors = colors.concat(getShadowsColors(style.enabledShadows()))
+            colors = colors.concat(getInnerShadowsColors(style.enabledInnerShadows()))
+
+            return colors
+        },
+
+        /**
+         * Get style's shadow colors
+         *
+         * @param {MSStyle} style
+         *
+         * @return {Array<MSColor>}
+         */
+        getShadowColors: function(style) {
+            return getShadowsColors(style.enabledShadows())
+        }
+    }
 })()

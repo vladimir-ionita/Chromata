@@ -89,7 +89,7 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
      * @return {Array.<CHRLayerColorsMapping>}
      */
     function getLayersColorsMappingsForANestedLayer(nestedLayer) {
-        let mappings = [(getLayerColorsMappingForALeafLayer(nestedLayer))]
+        let mappings = [(getLayerColorsMappingForANodeLayer(nestedLayer))]
 
         let childrenLayers = nestedLayer.layers()
         for (let i = 0; i < childrenLayers.length; i++) {
@@ -98,6 +98,22 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
         }
 
         return mappings
+    }
+
+    /**
+     * Get the mapping of a node layer and its colors
+     *
+     * Notes: Nested layers (MSLayerGroup) has no fill colors, but when parsing a style,
+     * it will actually shows that there is a fill color. That's why we need to get only
+     * whitelisted style colors, which are shadows for nested layers.
+     *
+     * @param {MSLayer} nodeLayer
+     *
+     * @return {CHRLayerColorsMapping}
+     */
+    function getLayerColorsMappingForANodeLayer(nodeLayer) {
+        let layerColors = CHRStyleParser.getShadowColors(nodeLayer.style())
+        return new CHRLayerColorsMapping(nodeLayer, layerColors)
     }
 
     /**
@@ -162,24 +178,28 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
 })()
 
 /**
- * Get a leaf layer by id from a node layer
+ * Get a layer by id from a node layer
  *
  * @param {string} layerId
  * @param {MSLayer} layer
  *
  * @return {MSLayer|null}
  */
-CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
+CHRLayerParser.getLayerByIdFromNodeLayer = function(layerId, layer) {
     let layerClass = layer.class()
     switch (layerClass) {
         case MSArtboardGroup:
         case MSSymbolMaster:
         case MSLayerGroup:
+            if (String(layer.objectID()).valueOf() == String(layerId).valueOf()) {
+                return layer
+            }
+
             let childrenLayers = layer.layers()
             for (let i = 0; i < childrenLayers.length; i++) {
                 let nodeLayer = childrenLayers[i]
 
-                let leafLayer = CHRLayerParser.getLeafLayerByIdFromNodeLayer(layerId, nodeLayer)
+                let leafLayer = CHRLayerParser.getLayerByIdFromNodeLayer(layerId, nodeLayer)
                 if (leafLayer) {
                     return leafLayer
                 }
@@ -190,8 +210,8 @@ CHRLayerParser.getLeafLayerByIdFromNodeLayer = function(layerId, layer) {
         default:
             if (String(layer.objectID()).valueOf() == String(layerId).valueOf()) {
                 return layer
-            } else {
-                return null
             }
+
+            return null
     }
 }
