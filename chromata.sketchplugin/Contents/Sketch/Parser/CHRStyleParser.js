@@ -48,6 +48,7 @@ CHRStyleParser.getColors = (function() {
         colors = colors.concat(getBordersColors(style.enabledBorders()))
         colors = colors.concat(getFillsColors(style.enabledFills()))
         colors = colors.concat(getShadowsColors(style.enabledShadows()))
+        colors = colors.concat(getInnerShadowsColors(style.enabledInnerShadows()))
 
         return colors
     }
@@ -137,5 +138,24 @@ CHRStyleParser.getColors = (function() {
 
         return colors
     }
+
+    /**
+     * Get inner shadows colors
+     *
+     * @param {Array.<MSStyleInnerShadow>} innerShadows
+     *
+     * @return {Array.<MSColor>}
+     */
+    function getInnerShadowsColors(innerShadows) {
+        let colors = []
+
+        for (let i = 0; i < innerShadows.length; i++) {
+            let innerShadowColor = innerShadows[i].color()
+            colors.push(innerShadowColor)
+        }
+
+        return colors
+    }
+
     return getColors
 })()
