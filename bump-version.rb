@@ -248,6 +248,7 @@ options = optionsParser.parse(ARGV)
 if options.bump_version.nil?
   puts "No bump version specified."
   puts "Usage: bump-version.rb --bump <version_number>"
+  return  # Stop if the version is not specified
 else
   puts 'Bump version to ' + options.bump_version
 
