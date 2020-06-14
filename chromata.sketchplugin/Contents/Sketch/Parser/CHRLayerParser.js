@@ -67,9 +67,9 @@ CHRLayerParser.getLayerColorsMappingsForLayer = (function() {
             case MSShapeGroup:
             case MSSymbolInstance:
             case MSBitmapLayer:
+            case MSRectangleShape:
                 return [(getLayerColorsMappingForALeafLayer(layer))]
 
-            case MSRectangleShape:
             case MSShapePathLayer:
             case MSOvalShape:
                 return []
