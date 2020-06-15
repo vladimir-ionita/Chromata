@@ -57,5 +57,5 @@ function moveViewportFocusToLayerInDocument(layer, document) {
         layer.frame().size().height + padding * 2
     )
 
-    document.currentContentViewController().contentDrawView().zoomToFitRect(focusRect)
+    document.contentDrawView().zoomToFitRect(focusRect)
 }
