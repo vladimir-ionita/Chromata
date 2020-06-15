@@ -58,7 +58,7 @@
     <item>
       <title>Version 0.5.0</title>
       <description><![CDATA[
-        **Chromata can work with multiple files.** Until now you could have a single palette and a single list.
+        **Chromata can work with multiple files.** Until now you could have a single palette and a single list of rogue layers.
         Whenever you switched files, you had to register again palette and find all rogue
         layers again. This was solved in this version. Now you have a separate palette and a separate list of rogue
         layers per file.
