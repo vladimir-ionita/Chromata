@@ -58,7 +58,7 @@
     <item>
       <title>Version 0.5.0</title>
       <description><![CDATA[
-        **Chromata can work with multiple files.** Until now you could have a single palette and a single list.
+        **Chromata can work with multiple files.** Until now you could have a single palette and a single list of rogue layers.
         Whenever you switched files, you had to register again palette and find all rogue
         layers again. This was solved in this version. Now you have a separate palette and a separate list of rogue
         layers per file.
@@ -78,6 +78,14 @@
        ]]></description>
       <pubDate>Mon, 28 May 2018 14:29:18 +0200</pubDate>
       <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.5.3/chromata.sketchplugin.zip" sparkle:version="0.5.3"/>
+    </item>
+    <item>
+      <title>Version 0.5.5</title>
+      <description><![CDATA[
+        Updated to support Sketch v66.1
+       ]]></description>
+      <pubDate>Sun, 14 Jun 2020 19:36:46 -0500</pubDate>
+      <enclosure url="https://github.com/abnamrocoesd/Chromata/releases/download/v0.5.5/chromata.sketchplugin.zip" sparkle:version="0.5.5"/>
     </item>
   </channel>
 </rss>
