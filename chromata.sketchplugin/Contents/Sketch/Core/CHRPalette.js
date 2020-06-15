@@ -52,6 +52,7 @@ CHRPalette.savePalette = function(palette) {
  */
 CHRPalette.loadPalette = function() {
     let rawPaletteRgba = CHRUserDefaults.fetchValueForKey(kUserDefaultsPaletteKey)
+    if (!rawPaletteRgba) { return [] }
 
     let palette = []
     for (let i = 0; i < rawPaletteRgba.length; i++) {
