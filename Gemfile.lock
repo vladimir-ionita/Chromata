@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    OptionParser (0.5.1)
+    json (2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.9)
+      mini_portile2 (~> 2.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  OptionParser
+  json
+  nokogiri
+
+BUNDLED WITH
+   2.1.2
