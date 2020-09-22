@@ -24,7 +24,7 @@ First option is to download it directly from GitHub. You can either clone the en
 
 ~~Second option is to use the link below to install the plugin via Sketchpacks. Keep in mind that Sketchpacks takes some time to index the latest versions.~~ Sketchpacks is down for the moment.
 
-[//]: #[![Install Chromata with Sketchpacks](http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Chromata with Sketchpacks")](https://sketchpacks.com/abnamrocoesd/Chromata/install)
+<!-- [![Install Chromata with Sketchpacks](http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Chromata with Sketchpacks")](https://sketchpacks.com/abnamrocoesd/Chromata/install) -->
 
 ## Usage
 
