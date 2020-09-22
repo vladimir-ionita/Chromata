@@ -4,8 +4,8 @@
 
 ### A sketch plugin to find rogue layers.
 
-[![Download from Sketchpacks.com](https://badges.sketchpacks.com/plugins/vladimirionita.chromata/version.svg)](https://api.sketchpacks.com/v1/plugins/vladimirionita.chromata/download)
-[![Compatible Sketch Version](https://badges.sketchpacks.com/plugins/vladimirionita.chromata/compatibility.svg)](https://sketchpacks.com/abnamrocoesd/Chromata)
+[![Download](https://img.shields.io/badge/Version-v0.5.5-%2346c018)](https://github.com/vladimir-ionita/Chromata/releases/download/v0.5.5/chromata.sketchplugin.zip)
+[![Compatible Sketch Version](https://img.shields.io/badge/Sketch-v66.1-%2346c018)](https://www.sketch.com/)
 [![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 </div>
